@@ -1,313 +1,319 @@
-'use client';
+"use client"
 
-import React, { useEffect, useState, useMemo } from 'react';
-import Image from 'next/image';
-import { siteConfig } from '@/content/site';
+import React, { useEffect, useState } from "react"
+import Image from "next/image"
+import { siteConfig } from "@/content/site"
 
 interface LoadingScreenProps {
-  onComplete: () => void;
+  onComplete: () => void
 }
 
-// motif: "#5B6655, #9CAA99, #ECE5DB, #C4D1E2, #8799A7, #A9A9A9",
-// Countdown boxes with color photos - numbers show days, hours, minutes
-const COUNTDOWN_BOXES = [
-  { src: '/frontboxes/box (1).jpeg' },
-  { src: '/frontboxes/box (2).jpeg' },
-  { src: '/frontboxes/box (3).jpeg' },
-];
+/** Splits a date string like "May 16, 2026" into ["05", "16", "26"] */
+function getDateSegments(dateStr: string): string[] {
+  const d = new Date(dateStr)
+  return [
+    String(d.getMonth() + 1).padStart(2, "0"),
+    String(d.getDate()).padStart(2, "0"),
+    String(d.getFullYear()).slice(-2),
+  ]
+}
 
-const MAIN_BW_IMAGE = '/frontboxes/front.jpeg';
-const STAGGER_DELAY_MS = 4000; // Each image appears every 4 seconds
-const BOX_TRANSITION_MS = 1200; // Slow, smooth transition
-const TOTAL_DURATION_MS = COUNTDOWN_BOXES.length * STAGGER_DELAY_MS + 3000;
+const GHOST_NUMBERS = getDateSegments(siteConfig.wedding.date)
+
+/** Fixed particle positions — avoids hydration mismatch */
+const PARTICLES = [
+  { id: 0, left: "7%",  bottom: "10%", delay: "0s",    dur: "5.2s", size: 3   },
+  { id: 1, left: "17%", bottom: "28%", delay: "0.8s",  dur: "6.8s", size: 2   },
+  { id: 2, left: "29%", bottom: "7%",  delay: "1.5s",  dur: "4.6s", size: 1.5 },
+  { id: 3, left: "44%", bottom: "20%", delay: "2.2s",  dur: "7.1s", size: 2.5 },
+  { id: 4, left: "57%", bottom: "5%",  delay: "0.4s",  dur: "5.7s", size: 2   },
+  { id: 5, left: "69%", bottom: "23%", delay: "1.9s",  dur: "6.3s", size: 1.5 },
+  { id: 6, left: "81%", bottom: "14%", delay: "1.0s",  dur: "4.2s", size: 3   },
+  { id: 7, left: "91%", bottom: "32%", delay: "2.6s",  dur: "5.8s", size: 2   },
+  { id: 8, left: "13%", bottom: "48%", delay: "3.3s",  dur: "7.6s", size: 1.5 },
+  { id: 9, left: "74%", bottom: "42%", delay: "1.2s",  dur: "6.6s", size: 2.5 },
+]
 
 export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
-  const [fadeOut, setFadeOut] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const [visibleBoxes, setVisibleBoxes] = useState<number[]>([]);
-  const [now, setNow] = useState(() => new Date());
+  const [fadeOut, setFadeOut] = useState(false)
+  const [progress, setProgress] = useState(0)
+  const [monogramVisible, setMonogramVisible] = useState(false)
+  const [nameVisible, setNameVisible] = useState(false)
+  const [supportVisible, setSupportVisible] = useState(false)
+  const [dateVisible, setDateVisible] = useState(false)
+  const [progressVisible, setProgressVisible] = useState(false)
 
-    // Live countdown: days, hours, minutes until wedding
-  const countdown = useMemo(() => {
-    const weddingDate = new Date(siteConfig.wedding.date);
-    const diff = weddingDate.getTime() - now.getTime();
-    if (diff <= 0) return { days: 0, hours: 0, minutes: 0 };
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    return { days, hours, minutes };
-  }, [now]);
-
-  const countdownText = useMemo(() => {
-    const { days } = countdown;
-    if (days === 0) return 'TODAY IS THE DAY';
-    if (days === 1) return 'ONE DAY TO GO';
-    if (days >= 28 && days <= 31) return 'ONE MONTH TO GO';
-    if (days >= 58 && days <= 62) return 'TWO MONTHS TO GO';
-    if (days >= 88 && days <= 93) return 'THREE MONTHS TO GO';
-    if (days >= 118 && days <= 123) return 'FOUR MONTHS TO GO';
-    if (days >= 148 && days <= 153) return 'FIVE MONTHS TO GO';
-    return `${days} DAYS TO GO`;
-  }, [countdown.days]);
-
-  // Wedding date derived from siteConfig.wedding.date
-  const debutDateObj = new Date(siteConfig.wedding.date);
-  const debutMonthName = debutDateObj
-    .toLocaleString('default', { month: 'short' })
-    .toUpperCase(); // e.g. "MAY"
-  const debutDay = String(debutDateObj.getDate()).padStart(2, '0'); // e.g. "09"
-  const debutYear = String(debutDateObj.getFullYear()); // e.g. "2026"
-
-  const countdownNumbers = [debutMonthName, debutDay, debutYear]; // e.g. May, 09, 2026
-  const countdownLabels = ['Month', 'Day', 'Year']; // should return Month, Day, Year
+  const TOTAL_LOAD_MS = 8000
+  const FADE_MS = 600
 
   useEffect(() => {
-    const t = setInterval(() => setNow(new Date()), 60000); // update every minute
-    return () => clearInterval(t);
-  }, []);
+    const t0 = setTimeout(() => setMonogramVisible(true), 80)
+    const t1 = setTimeout(() => setNameVisible(true),     300)
+    const t2 = setTimeout(() => setSupportVisible(true),  520)
+    const t3 = setTimeout(() => setDateVisible(true),     680)
+    const t4 = setTimeout(() => setProgressVisible(true), 840)
+    return () => {
+      clearTimeout(t0); clearTimeout(t1); clearTimeout(t2)
+      clearTimeout(t3); clearTimeout(t4)
+    }
+  }, [])
 
   useEffect(() => {
-    const timers: NodeJS.Timeout[] = [];
-    COUNTDOWN_BOXES.forEach((_, i) => {
-      timers.push(
-        setTimeout(() => setVisibleBoxes((prev) => [...prev, i]), i * STAGGER_DELAY_MS)
-      );
-    });
-    return () => timers.forEach(clearTimeout);
-  }, []);
+    let rafId = 0
+    const start = performance.now()
 
-  useEffect(() => {
-    const startTime = Date.now();
-    const progressInterval = setInterval(() => {
-      const elapsed = Date.now() - startTime;
-      const pct = Math.min(100, (elapsed / TOTAL_DURATION_MS) * 100);
-      setProgress(pct);
-    }, 50);
+    const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3)
 
-    const timer = setTimeout(() => {
-      setProgress(100);
-      setFadeOut(true);
-      setTimeout(onComplete, 500);
-    }, TOTAL_DURATION_MS);
+    const tick = (now: number) => {
+      const elapsed = now - start
+      const t = Math.min(1, Math.max(0, elapsed / TOTAL_LOAD_MS))
+
+      // Smooth, time-based progress (drift-free). Quantize to integer for the % label.
+      const next = Math.round(easeOutCubic(t) * 100)
+      setProgress((prev) => (next > prev ? next : prev))
+
+      if (t < 1) rafId = requestAnimationFrame(tick)
+    }
+
+    rafId = requestAnimationFrame(tick)
+
+    // Ensure the total loader duration is exactly TOTAL_LOAD_MS.
+    const fadeTimer = setTimeout(() => setFadeOut(true), Math.max(0, TOTAL_LOAD_MS - FADE_MS))
+    const completeTimer = setTimeout(() => {
+      setProgress(100)
+      onComplete()
+    }, TOTAL_LOAD_MS)
 
     return () => {
-      clearTimeout(timer);
-      clearInterval(progressInterval);
-    };
-  }, [onComplete]);
-
-  const coupleNames = `${siteConfig.couple.groomNickname} & ${siteConfig.couple.brideNickname}`;
-  const hashtag = `${siteConfig.couple.groomNickname} & ${siteConfig.couple.brideNickname}`;
-  const productionCredit = '';
-
-
-  // Palette lives in globals.css → @theme inline → --color-motif-*
-  // Edit there once to update every component.
+      cancelAnimationFrame(rafId)
+      clearTimeout(fadeTimer)
+      clearTimeout(completeTimer)
+    }
+  }, [onComplete])
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex flex-col overflow-hidden transition-opacity duration-500 ${
-        fadeOut ? 'opacity-0 pointer-events-none' : 'opacity-100'
+      className={`fixed inset-0 z-50 flex items-center justify-center overflow-hidden transition-opacity duration-700 ease-out ${
+        fadeOut ? "opacity-0 pointer-events-none" : "opacity-100"
       }`}
+      role="progressbar"
+      aria-valuenow={progress}
+      aria-valuemin={0}
+      aria-valuemax={100}
+      aria-label="Loading invitation"
     >
-      {/* Background image with overlay */}
-      <div className="absolute inset-0">
-        <Image
-          src={MAIN_BW_IMAGE}
-          alt=""
-          fill
-          className="object-cover object-center"
-          sizes="100vw"
-          priority
-        />
-        {/* Gradient overlay for readability and warmth */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background: 'linear-gradient(180deg, color-mix(in srgb, var(--color-motif-medium) 25%, transparent) 0%, transparent 25%, transparent 75%, color-mix(in srgb, var(--color-motif-medium) 33%, transparent) 100%)',
-          }}
-        />
-        {/* Bottom scrim to keep lower text readable on any photo */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              'linear-gradient(180deg, transparent 55%, rgba(0,0,0,0.42) 78%, rgba(0,0,0,0.62) 100%)',
-          }}
-        />
+      {/* ── Layer 1: solid motif-deep base ── */}
+      <div
+        className="absolute inset-0"
+        style={{ backgroundColor: "var(--color-motif-deep)" }}
+      />
+
+      {/* ── Layer 2: radial vignette for depth ── */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse 75% 65% at 50% 48%, transparent 25%, rgba(0,0,0,0.5) 100%)",
+        }}
+      />
+
+      {/* ── Layer 3: floating particles ── */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden>
+        {PARTICLES.map((p) => (
+          <span
+            key={p.id}
+            className="absolute rounded-full animate-loader-float"
+            style={
+              {
+                left: p.left,
+                bottom: p.bottom,
+                width: `${p.size}px`,
+                height: `${p.size}px`,
+                "--delay": p.delay,
+                "--dur": p.dur,
+                backgroundColor: "var(--color-motif-accent)",
+                opacity: 0,
+              } as React.CSSProperties
+            }
+          />
+        ))}
       </div>
 
-      <div className="relative flex flex-col flex-1 min-h-0">
-        {/* Top: headline + hashtag + countdown (readable over photo, no container) */}
-        <div className="flex flex-col items-center justify-center w-full pt-12 sm:pt-16 md:pt-24 px-4 sm:px-6 flex-shrink-0">
-          <div className="w-full max-w-lg mx-auto">
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-3 sm:mb-4">
-              <span
-                className="hidden sm:block h-px w-12 flex-shrink-0"
-                style={{ backgroundColor: 'var(--color-motif-medium)' }}
-              />
-              <p className="text-center">
-                <span
-                  className="inline-block text-[10px] sm:text-xs tracking-[0.28em] sm:tracking-[0.36em] font-[family-name:'Cinzel', serif] uppercase px-3 py-1.5 rounded-full backdrop-blur-sm border"
-                  style={{
-                    color: 'var(--color-motif-cream)',
-                    backgroundColor: 'var(--color-motif-deep)',
-                    borderColor: 'var(--color-motif-silver)',
-                    textShadow: '0 1px 0 var(--color-motif-soft)',
-                  }}
-                >
-                  Your invitation is on its way
-                </span>
-              </p>
-              <span
-                className="hidden sm:block h-px w-12 flex-shrink-0"
-                style={{ backgroundColor: 'var(--color-motif-accent)' }}
-              />
-            </div>
-
-            <p className="text-center mb-4 sm:mb-5">
-              <span
-                className="inline-block text-xs sm:text-sm tracking-[0.2em] sm:tracking-[0.25em] font-[family-name:'Cinzel', serif] px-3 py-1.5 rounded-full backdrop-blur-sm border"
-                style={{
-                  color: 'var(--color-motif-cream)',
-                  backgroundColor: 'var(--color-motif-deep)',
-                  borderColor: 'var(--color-motif-silver)',
-                  textShadow: '0 1px 0 var(--color-motif-soft)',
-                }}
-              >
-                {hashtag}
-              </span>
-            </p>
-
-            <h2 className="text-center">
-              <span
-                className="inline-block text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-[0.08em] sm:tracking-[0.12em] uppercase max-w-md mx-auto leading-tight px-2"
-                style={{
-                  fontFamily: '"Cinzel", serif',
-                  color: 'var(--color-motif-cream)',
-                  textShadow: '0 2px 14px rgba(0,0,0,0.55), 0 0 22px var(--color-motif-soft), 0 0 44px var(--color-motif-deep)',
-                }}
-              >
-                {countdownText}
-              </span>
-            </h2>
-          </div>
-        </div>
-
-        {/* Spacer - lets B&W image dominate (upper 2/3) */}
-        <div className="flex-1 min-h-[12vh]" />
-
-        {/* Middle: Three color countdown boxes - staggered reveal */}
-        <div className="flex items-stretch justify-center gap-3 sm:gap-4 md:gap-6 px-3 sm:px-4 py-4 flex-shrink-0">
-          {COUNTDOWN_BOXES.map((item, i) => {
-            const isVisible = visibleBoxes.includes(i);
-            return (
-              <div
-                key={i}
-                className="relative flex-1 max-w-[28vw] sm:max-w-[140px] md:max-w-[160px] aspect-[3/4] overflow-hidden rounded-3xl border border-white/40 bg-white/10 backdrop-blur-md shadow-[0_18px_45px_rgba(0,0,0,0.35)]"
-                style={{
-                  opacity: isVisible ? 1 : 0,
-                  transform: isVisible
-                    ? 'translateY(0) scale(1)'
-                    : 'translateY(28px) scale(0.94)',
-                  transition: `opacity ${BOX_TRANSITION_MS}ms cubic-bezier(0.4, 0, 0.2, 1), transform ${BOX_TRANSITION_MS}ms cubic-bezier(0.4, 0, 0.2, 1)`,
-                }}
-              >
-                <Image
-                  src={item.src}
-                  alt={coupleNames}
-                  fill
-                  className="object-cover scale-105"
-                  sizes="(max-width: 640px) 28vw, 160px"
-                />
-                {/* Soft gradient overlay for readable number */}
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    background: 'linear-gradient(145deg, color-mix(in srgb, var(--color-motif-deep) 40%, transparent) 0%, transparent 40%, color-mix(in srgb, var(--color-motif-accent) 67%, transparent) 100%)',
-                  }}
-                />
-
-                {/* Bold debut date number + label - centered at bottom */}
-                <div className="absolute bottom-2 inset-x-0 sm:bottom-3 flex flex-col items-center">
-                  <span
-                    className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black select-none leading-none drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]"
-                    style={{
-                      fontFamily: 'var(--font-granika), sans-serif',
-                      color: 'var(--color-motif-cream)',
-                    }}
-                  >
-                    {countdownNumbers[i]}
-                  </span>
-                  <span className="text-[8px] sm:text-[9px] tracking-widest uppercase mt-0.5" style={{ color: 'color-mix(in srgb, var(--color-motif-soft) 85%, transparent)' }}>
-                    {countdownLabels[i]}
-                  </span>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Bottom: Names + production credit + progress bar */}
-        <div className="flex flex-col items-center justify-center w-full py-6 sm:py-8 px-4 flex-shrink-0">
-          <div
-            className="w-full max-w-md rounded-3xl px-5 sm:px-7 py-5 sm:py-6 border backdrop-blur-md shadow-[0_18px_55px_rgba(0,0,0,0.45)]"
+      {/* ── Layer 4: ghost date numbers (right side) ── */}
+      <div
+        className="absolute inset-0 pointer-events-none flex flex-col items-end justify-center pr-6 sm:pr-10 md:pr-14 lg:pr-20 select-none"
+        aria-hidden
+      >
+        {GHOST_NUMBERS.map((num, i) => (
+          <span
+            key={num}
+            className="text-[7rem] sm:text-[9rem] md:text-[11rem] lg:text-[13rem] font-bold leading-[0.85] transition-opacity duration-1000 ease-out"
             style={{
-              backgroundColor: 'color-mix(in srgb, var(--color-motif-deep) 55%, transparent)',
-              borderColor: 'color-mix(in srgb, var(--color-motif-silver) 30%, transparent)',
+              fontFamily: '"Scope One", serif',
+              color: "color-mix(in srgb, var(--color-motif-soft) 5%, transparent)",
+              letterSpacing: "-0.03em",
+              opacity: nameVisible ? 1 : 0,
+              transitionDelay: `${i * 90}ms`,
             }}
           >
-            <p
-              className="text-center text-xs sm:text-sm tracking-[0.22em] uppercase font-[family-name:var(--font-crimson)] mb-2"
-              style={{ color: 'var(--color-motif-cream)', textShadow: '0 2px 10px rgba(0,0,0,0.45)' }}
-            >
-              Almost ready for
-            </p>
-            <div
-              className="text-center text-2xl sm:text-3xl md:text-4xl mb-2"
-              style={{
-                fontFamily: '"Cinzel", serif',
-                color: 'var(--color-motif-cream)',
-                textShadow: '0 2px 16px rgba(0,0,0,0.65)',
-              }}
-            >
-              {coupleNames}
-            </div>
-            {productionCredit && (
-              <p
-                className="text-center text-[10px] sm:text-xs font-sans tracking-wider"
-                style={{ color: 'color-mix(in srgb, var(--color-motif-cream) 75%, transparent)' }}
-              >
-                {productionCredit}
-              </p>
-            )}
+            {num}
+          </span>
+        ))}
+      </div>
 
-            <p
-              className="text-center text-[10px] sm:text-xs tracking-[0.28em] mt-5 mb-3 font-[family-name:var(--font-crimson)] uppercase font-semibold"
-              style={{ color: 'var(--color-motif-cream)', textShadow: '0 2px 10px rgba(0,0,0,0.55)' }}
+      {/* ── Main content ── */}
+      <div className="relative z-10 w-full max-w-lg mx-auto px-6 sm:px-8 md:px-10 text-center">
+
+        {/* Monogram + glow ring */}
+        <div
+          className={`mb-6 sm:mb-8 flex justify-center transition-all duration-700 ease-out ${
+            monogramVisible ? "opacity-100 translate-y-0 scale-100" : "opacity-0 -translate-y-5 scale-95"
+          }`}
+        >
+          <div className="relative flex items-center justify-center">
+            <div
+              className="absolute rounded-full animate-loader-glow"
+              style={{
+                width: "160px",
+                height: "160px",
+                background:
+                  "radial-gradient(circle, color-mix(in srgb, var(--color-motif-accent) 22%, transparent) 0%, transparent 72%)",
+              }}
+            />
+            <Image
+              src="/monogram/monogram.png"
+              alt="Monogram"
+              width={240}
+              height={240}
+              className="relative h-28 w-28 sm:h-32 sm:w-32 md:h-36 md:w-36 object-contain object-center brightness-0 invert"
+              priority
+            />
+          </div>
+        </div>
+
+        {/* Botanical ornament */}
+        <div
+          className={`flex justify-center mb-5 sm:mb-6 transition-all duration-700 ease-out ${
+            nameVisible ? "opacity-100 scale-100" : "opacity-0 scale-90"
+          }`}
+          style={{ transitionDelay: "120ms" }}
+          aria-hidden
+        >
+          <svg
+            width="110" height="22" viewBox="0 0 110 22" fill="none"
+            style={{ color: "var(--color-motif-cream)" }}
+          >
+            {/* left leaf */}
+            <path
+              d="M55 11 C46 4 28 1 6 9 C28 7 46 14 55 11Z"
+              fill="currentColor" fillOpacity="0.3"
+            />
+            <path
+              d="M55 11 C46 5 30 3 6 9"
+              stroke="currentColor" strokeWidth="0.7" strokeOpacity="0.45" fill="none"
+            />
+            {/* right leaf */}
+            <path
+              d="M55 11 C64 4 82 1 104 9 C82 7 64 14 55 11Z"
+              fill="currentColor" fillOpacity="0.3"
+            />
+            <path
+              d="M55 11 C64 5 80 3 104 9"
+              stroke="currentColor" strokeWidth="0.7" strokeOpacity="0.45" fill="none"
+            />
+            {/* center bloom */}
+            <circle cx="55" cy="11" r="2.8" fill="currentColor" fillOpacity="0.55" />
+            <circle cx="55" cy="11" r="1.2" fill="currentColor" fillOpacity="0.85" />
+          </svg>
+        </div>
+
+        {/* Names */}
+        <h1
+          className={`transition-all duration-700 ease-out ${
+            nameVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+          }`}
+        >
+          <span
+            className="scope-one-regular text-3xl sm:text-4xl md:text-5xl tracking-[0.2em] uppercase"
+            style={{ color: "var(--color-motif-silver)" }}
+          >
+            {siteConfig.couple.groomNickname.trim()}
+          </span>
+          <span
+            className="text-2xl sm:text-3xl md:text-4xl mx-3 font-[family-name:var(--font-imperial-script)]"
+            style={{ color: "var(--color-motif-cream)" }}
+          >
+            &amp;
+          </span>
+          <span
+            className="scope-one-regular text-3xl sm:text-4xl md:text-5xl tracking-[0.2em] uppercase"
+            style={{ color: "var(--color-motif-silver)" }}
+          >
+            {siteConfig.couple.brideNickname.trim()}
+          </span>
+        </h1>
+
+        {/* Supporting line */}
+        <p
+          className={`font-[family-name:var(--font-imperial-script)] text-sm sm:text-base mt-6 sm:mt-8 transition-all duration-600 ease-out ${
+            supportVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          }`}
+          style={{ color: "var(--color-motif-cream)" }}
+        >
+          Together with their families
+        </p>
+
+        {/* Wedding date */}
+        <p
+          className={`scope-one-regular text-[10px] sm:text-[11px] tracking-[0.35em] uppercase mt-2 mb-10 sm:mb-12 transition-all duration-600 ease-out ${
+            dateVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          }`}
+          style={{ color: "color-mix(in srgb, var(--color-motif-cream) 55%, transparent)" }}
+        >
+          {siteConfig.ceremony.day}&nbsp;·&nbsp;{siteConfig.wedding.date}
+        </p>
+
+        {/* Progress section */}
+        <div
+          className={`transition-all duration-600 ease-out ${
+            progressVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          }`}
+        >
+          <p
+            className="font-[family-name:var(--font-imperial-script)] text-base sm:text-lg mb-4 sm:mb-5"
+            style={{ color: "var(--color-motif-cream)" }}
+          >
+            Preparing your invitation
+          </p>
+
+          {/* Progress bar */}
+          <div className="w-full max-w-[260px] mx-auto mb-3 relative">
+            <div
+              className="h-px sm:h-0.5 rounded-full overflow-hidden"
+              style={{
+                backgroundColor: "color-mix(in srgb, var(--color-motif-medium) 25%, transparent)",
+              }}
+              role="presentation"
             >
-              Crafting your invitation experience
-            </p>
-            <div className="w-full max-w-xs mx-auto">
               <div
-                className="h-1.5 rounded-full overflow-hidden"
+                className="h-full rounded-full min-w-[2px] transition-[width] duration-150 ease-linear"
                 style={{
-                  backgroundColor: 'color-mix(in srgb, var(--color-motif-cream) 22%, transparent)',
+                  width: `${Math.max(progress, 2)}%`,
+                  backgroundColor: "var(--color-motif-cream)",
                 }}
-              >
-                <div
-                  className="h-full rounded-full transition-all duration-300 ease-out"
-                  style={{
-                    width: `${progress}%`,
-                    backgroundColor: 'var(--color-motif-cream)',
-                    boxShadow: '0 0 14px rgba(255,255,255,0.28)',
-                  }}
-                />
-              </div>
+              />
             </div>
           </div>
+
+          <p
+            className="scope-one-regular text-[10px] sm:text-xs tracking-[0.3em] tabular-nums mt-3"
+            style={{ color: "var(--color-motif-cream)" }}
+            aria-live="polite"
+          >
+            {progress}%
+          </p>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
