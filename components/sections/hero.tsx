@@ -58,7 +58,7 @@ export function Hero() {
               className="scope-one-regular text-3xl sm:text-4xl md:text-5xl tracking-[0.25em] uppercase"
               style={{ color: "var(--color-motif-cream)" }}
             >
-              {siteConfig.couple.bride.trim()}
+              {siteConfig.couple.brideNickname.trim()}
             </p>
 
             <p
@@ -72,7 +72,7 @@ export function Hero() {
               className="scope-one-regular text-3xl sm:text-4xl md:text-5xl tracking-[0.25em] uppercase"
               style={{ color: "var(--color-motif-cream)" }}
             >
-              {siteConfig.couple.groom.trim()}
+              {siteConfig.couple.groomNickname.trim()}
             </p>
           </div>
 

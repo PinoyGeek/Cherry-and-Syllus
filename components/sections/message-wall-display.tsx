@@ -12,7 +12,7 @@ const cormorant = Cormorant_Garamond({
 })
 
 // Colors sourced from globals.css @theme inline — edit there to update everywhere
-const MSG_COLOR = "var(--color-motif-deep)"
+const MSG_COLOR = "var(--color-motif-accent)"
 
 interface Message {
   timestamp: string

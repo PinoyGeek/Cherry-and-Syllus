@@ -24,7 +24,7 @@ const cinzel = Cinzel({
 })
 
 // Colors sourced from globals.css @theme inline — edit there to update everywhere
-const MSG_COLOR = "var(--color-motif-deep)"
+const MSG_COLOR = "var(--color-motif-accent)"
 const DECO_FILTER = "brightness(0) invert(1)"
 
 interface Message {
@@ -119,10 +119,10 @@ function MessageForm({ onSuccess, onMessageSent }: MessageFormProps) {
       <div className="absolute -top-3 -left-3 w-8 h-8 bg-motif-deep/20 rounded-full blur-sm animate-pulse-slow" />
       <div className="absolute -bottom-4 -right-4 w-12 h-12 bg-motif-deep/20 rounded-full blur-md animate-pulse-slow" />
       
-      <Card className={`relative w-full border-2 border-motif-deep/40 bg-motif-cream backdrop-blur-md transition-all duration-500 group overflow-hidden rounded-2xl ${
+      <Card className={`relative w-full border-2 border-motif-deep/60 bg-motif-deep backdrop-blur-md transition-all duration-500 group overflow-hidden rounded-2xl ${
         isFocused ? 'scale-[1.01] border-motif-deep' : 'hover:border-motif-deep/60'
       } ${isSubmitted ? 'animate-bounce' : ''}`}
-        style={{ boxShadow: '0 12px 30px color-mix(in srgb, var(--color-motif-deep) 15%, transparent)' }}
+        style={{ boxShadow: '0 16px 40px color-mix(in srgb, var(--color-motif-deep) 45%, transparent)' }}
       >
         {/* Subtle overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-motif-deep/5 via-transparent to-transparent pointer-events-none" />
@@ -148,10 +148,10 @@ function MessageForm({ onSuccess, onMessageSent }: MessageFormProps) {
                 <MessageCircle className="h-5 w-5 sm:h-6 sm:w-6 md:h-8 md:w-8 text-white" />
               </div>
             </div>
-            <h3 className={`${cinzel.className} text-base sm:text-lg md:text-xl font-bold mb-1.5 sm:mb-2`} style={{ color: MSG_COLOR }}>
+            <h3 className={`scope-one-regular uppercase text-base sm:text-lg md:text-xl font-bold mb-1.5 sm:mb-2`} style={{ color: "var(--color-motif-cream)" }}>
               Share Your Love
             </h3>
-            <p className={`${cormorant.className} text-[10px] sm:text-xs md:text-sm`} style={{ color: MSG_COLOR, opacity: 0.85 }}>
+            <p className={`${cormorant.className} text-[10px] sm:text-xs md:text-sm`} style={{ color: "var(--color-motif-cream)", opacity: 0.85 }}>
               Your words will be part of {coupleDisplayName}&apos;s keepsake for years to come.
             </p>
           </div>
@@ -165,9 +165,9 @@ function MessageForm({ onSuccess, onMessageSent }: MessageFormProps) {
           >
             {/* Name Field */}
             <div className="space-y-1.5 sm:space-y-2 md:space-y-3">
-              <label className={`${cormorant.className} block text-xs sm:text-sm md:text-base font-medium flex items-center gap-1.5 sm:gap-2`} style={{ color: MSG_COLOR }}>
-                <div className={`w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 rounded-full flex items-center justify-center transition-all duration-300 ${focusedField === 'name' ? 'scale-110' : ''}`}                   style={{ backgroundColor: 'color-mix(in srgb, var(--color-motif-deep) 13%, transparent)' }}>
-                  <Heart className="h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-4 md:w-4" style={{ color: MSG_COLOR }} />
+              <label className={`${cormorant.className} block text-xs sm:text-sm md:text-base font-medium flex items-center gap-1.5 sm:gap-2`} style={{ color: "var(--color-motif-cream)" }}>
+                <div className={`w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 rounded-full flex items-center justify-center transition-all duration-300 ${focusedField === 'name' ? 'scale-110' : ''}`}                   style={{ backgroundColor: 'color-mix(in srgb, var(--color-motif-cream) 13%, transparent)' }}>
+                  <Heart className="h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-4 md:w-4" style={{ color: "var(--color-motif-cream)" }} />
                 </div>
                 Your Name
               </label>
@@ -198,14 +198,14 @@ function MessageForm({ onSuccess, onMessageSent }: MessageFormProps) {
             {/* Message Field */}
             <div className="space-y-1.5 sm:space-y-2 md:space-y-3">
               <div className="flex items-center justify-between">
-                <label className={`${cormorant.className} block text-xs sm:text-sm md:text-base font-medium flex items-center gap-1.5 sm:gap-2`} style={{ color: MSG_COLOR }}>
-                  <div className={`w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 rounded-full flex items-center justify-center transition-all duration-300 ${focusedField === 'message' ? 'scale-110' : ''}`} style={{ backgroundColor: 'color-mix(in srgb, var(--color-motif-deep) 13%, transparent)' }}>
-                    <MessageCircle className="h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-4 md:w-4" style={{ color: MSG_COLOR }} />
+                <label className={`${cormorant.className} block text-xs sm:text-sm md:text-base font-medium flex items-center gap-1.5 sm:gap-2`} style={{ color: "var(--color-motif-cream)" }}>
+                  <div className={`w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 rounded-full flex items-center justify-center transition-all duration-300 ${focusedField === 'message' ? 'scale-110' : ''}`} style={{ backgroundColor: 'color-mix(in srgb, var(--color-motif-cream) 13%, transparent)' }}>
+                    <MessageCircle className="h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-4 md:w-4" style={{ color: "var(--color-motif-cream)" }} />
                   </div>
                   Your Message
                 </label>
                 {messageValue && (
-                  <span className={`${cormorant.className} text-[10px] sm:text-xs transition-colors ${messageValue.length > 500 ? 'text-red-500' : ''}`} style={messageValue.length <= 500 ? { color: MSG_COLOR, opacity: 0.6 } : undefined}>
+                  <span className={`${cormorant.className} text-[10px] sm:text-xs transition-colors ${messageValue.length > 500 ? 'text-red-500' : ''}`} style={messageValue.length <= 500 ? { color: "var(--color-motif-cream)", opacity: 0.6 } : undefined}>
                     {messageValue.length}/500
                   </span>
                 )}
@@ -246,17 +246,17 @@ function MessageForm({ onSuccess, onMessageSent }: MessageFormProps) {
               style={{ 
                 backgroundColor: MSG_COLOR,
                 color: "var(--color-motif-cream)",
-                boxShadow: "0 6px 20px color-mix(in srgb, var(--color-motif-deep) 30%, transparent), 0 2px 8px color-mix(in srgb, var(--color-motif-deep) 15%, transparent)",
+                boxShadow: "0 6px 20px color-mix(in srgb, var(--color-motif-cream) 30%, transparent), 0 2px 8px color-mix(in srgb, var(--color-motif-cream) 15%, transparent)",
               }}
               onMouseEnter={(e) => {
                 if (!e.currentTarget.disabled) {
                   e.currentTarget.style.backgroundColor = "var(--color-motif-accent)";
-                  e.currentTarget.style.boxShadow = "0 8px 24px color-mix(in srgb, var(--color-motif-deep) 35%, transparent), 0 3px 10px color-mix(in srgb, var(--color-motif-deep) 20%, transparent)";
+                  e.currentTarget.style.boxShadow = "0 8px 24px color-mix(in srgb, var(--color-motif-cream) 35%, transparent), 0 3px 10px color-mix(in srgb, var(--color-motif-cream) 20%, transparent)";
                 }
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.backgroundColor = MSG_COLOR;
-                e.currentTarget.style.boxShadow = "0 6px 20px color-mix(in srgb, var(--color-motif-deep) 30%, transparent), 0 2px 8px color-mix(in srgb, var(--color-motif-deep) 15%, transparent)";
+                e.currentTarget.style.boxShadow = "0 6px 20px color-mix(in srgb, var(--color-motif-cream) 30%, transparent), 0 2px 8px color-mix(in srgb, var(--color-motif-cream) 15%, transparent)";
               }}
             >
               {isSubmitting ? (
@@ -269,7 +269,7 @@ function MessageForm({ onSuccess, onMessageSent }: MessageFormProps) {
                 </span>
               ) : (
                 <span className="flex items-center justify-center gap-2 relative z-10">
-                  <Send className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
+                  <Send className="h-4 w-4 sm:h-5 sm:w-5 text-cream" />
                   Send Message
                 </span>
               )}
@@ -347,7 +347,7 @@ export function Messages() {
             <p className={`${cormorant.className} text-[0.7rem] sm:text-xs md:text-sm uppercase tracking-[0.28em] text-motif-cream`}>
               Messages for {coupleDisplayName}
             </p>
-            <h2 className={`${cinzel.className} text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-motif-cream`}>
+            <h2 className={`scope-one-regular uppercase text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-motif-cream`}>
               Love notes &amp; prayers
             </h2>
           </div>
@@ -383,10 +383,10 @@ export function Messages() {
               </div>
               <div className="absolute -inset-2 rounded-full bg-motif-deep/20 blur-md opacity-0 hover:opacity-100 transition-opacity duration-300" />
             </div>
-            <h3 className={`${cinzel.className} text-lg sm:text-xl md:text-2xl font-bold mb-1.5 sm:mb-2 md:mb-3 text-motif-cream`}>
+            <h3 className={`scope-one-regular uppercase text-lg sm:text-xl md:text-2xl font-bold mb-1.5 sm:mb-2 md:mb-3 text-motif-cream`}>
               Messages from Loved Ones
             </h3>
-            <p className={`${cormorant.className} text-xs sm:text-sm md:text-base max-w-2xl mx-auto px-2 sm:px-4 text-motif-cream`}>
+            <p className={`scope-one-regular text-xs sm:text-sm md:text-base max-w-2xl mx-auto px-2 sm:px-4 text-motif-cream`}>
               Read the beautiful messages shared by family and friends
             </p>
           </div>

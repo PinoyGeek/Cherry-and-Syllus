@@ -5,7 +5,7 @@ import { useState, useEffect } from "react"
 import Image from "next/image"
 import { QRCodeSVG } from "qrcode.react"
 import { siteConfig } from "@/content/site"
-import { Cinzel, Cormorant_Garamond } from "next/font/google"
+import { Cormorant_Garamond } from "next/font/google"
 import {
   Shirt,
   Clock,
@@ -24,11 +24,6 @@ const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
   weight: ["400"],
 })
-
-const cinzel = Cinzel({
-  subsets: ["latin"],
-  weight: ["400", "600"],
-})  
 
 // Colors sourced from globals.css @theme inline — edit there to update everywhere
 
@@ -105,26 +100,32 @@ export function Details() {
   const formattedCeremonyDate = siteConfig.ceremony.date
   const formattedReceptionDate = siteConfig.ceremony.date // reception follows ceremony on same day
 
-  const DECO_FILTER = "brightness(0) saturate(100%) invert(39%) sepia(18%) saturate(486%) hue-rotate(62deg) brightness(94%) contrast(88%)"
+  const DECO_FILTER = "brightness(0) saturate(100%) invert(100%)"
 
   const openInMaps = (link: string) => {
     window.open(link, '_blank', 'noopener,noreferrer')
   }
 
+  const dressCodeTheme = siteConfig.dressCode.theme
+  const dressCodeColors = siteConfig.dressCode.colors
+    .split(",")
+    .map((c) => c.trim())
+    .filter((c): c is string => c.length > 0)
+
 
   return (
     <Section
       id="details"
-      className="relative py-16 sm:py-20 md:py-24 lg:py-28 overflow-hidden bg-motif-cream"
+      className="relative py-16 sm:py-20 md:py-24 lg:py-28 overflow-hidden bg-motif-deep"
     >
       {/* Semi-transparent overlay for better text readability */}
       <div className="absolute inset-0 pointer-events-none">
-        <div
+        {/* <div
           className="absolute inset-0 opacity-[0.25]"
           style={{
             background: 'linear-gradient(165deg, var(--color-motif-cream) 0%, color-mix(in srgb, var(--color-motif-silver) 14%, transparent) 35%, color-mix(in srgb, var(--color-motif-medium) 6%, transparent) 70%, color-mix(in srgb, var(--color-motif-deep) 3%, transparent) 100%)',
           }}
-        />
+        /> */}
         <div
           className="absolute inset-0 opacity-[0.08]"
           style={{ background: 'radial-gradient(ellipse 80% 50% at 50% 15%, var(--color-motif-silver) 0%, transparent 55%)' }}
@@ -187,17 +188,15 @@ export function Details() {
           <div className="h-px w-16 sm:w-24 bg-motif-silver/60" />
         </div>
         <h2
-          className={`${cinzel.className} text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-motif-deep mb-3 sm:mb-4 uppercase`}
+          className="scope-one-regular text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-motif-cream mb-3 sm:mb-4 tracking-[0.22em] uppercase"
           style={{
-            letterSpacing: "0.16em",
             textShadow: "0 2px 10px rgba(91,102,85,0.25)",
-            fontWeight: 600,
           }}
         >
           Event Details
         </h2>
         <p
-          className={`${cinzel.className} text-sm sm:text-base md:text-lg text-motif-medium font-normal max-w-xl mx-auto leading-relaxed tracking-[0.14em] px-4`}
+          className="font-body text-sm sm:text-base md:text-lg text-motif-cream/95 max-w-xl mx-auto leading-relaxed tracking-[0.06em] px-4"
         >
           Everything you need to know about our special day.
         </p>
@@ -212,7 +211,7 @@ export function Details() {
           <div className="absolute -inset-1 bg-gradient-to-br from-motif-silver/22 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-lg" />
           
           {/* Main card */}
-          <div className="relative bg-motif-silver rounded-xl sm:rounded-2xl overflow-hidden border border-motif-deep/20  shadow-[0_16px_40px_rgba(0,0,0,0.18)] hover:shadow-[0_20px_48px_rgba(0,0,0,0.24)] hover:border-motif-deep/80 transition-all duration-300">
+          <div className="relative bg-motif-cream rounded-xl sm:rounded-2xl overflow-hidden border border-motif-cream/20  shadow-[0_16px_40px_rgba(0,0,0,0.18)] hover:shadow-[0_20px_48px_rgba(0,0,0,0.24)] hover:border-motif-cream/80 transition-all duration-300">
             {/* Venue Image */}
             <div className="relative w-full h-64 sm:h-72 md:h-80 lg:h-96 xl:h-[30rem] overflow-hidden">
               <Image
@@ -230,10 +229,10 @@ export function Details() {
                 {/* <p className="text-sm sm:text-base md:text-lg font-[family-name:var(--font-ephesis)] text-[#FFF7F6] mb-1 sm:mb-2 drop-shadow-lg">
                   Ceremony
                 </p> */}
-                <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-[family-name:var(--font-crimson)] font-normal text-white mb-0.5 sm:mb-1 drop-shadow-lg uppercase tracking-[0.1em] leading-tight">
+                <h3 className="scope-one-regular text-lg sm:text-xl md:text-2xl lg:text-3xl font-normal text-white mb-0.5 sm:mb-1 drop-shadow-lg uppercase tracking-[0.18em] leading-tight">
                   {siteConfig.ceremony.location}
                 </h3>
-                <p className={`${cinzel.className} text-xs sm:text-sm md:text-base text-white/95 drop-shadow-md tracking-wide`}>
+                <p className="font-body text-xs sm:text-sm md:text-base text-white/90 drop-shadow-md tracking-[0.12em] uppercase">
                   {siteConfig.ceremony.venue}
                 </p>
               </div>
@@ -244,25 +243,25 @@ export function Details() {
               {/* Date Section */}
               <div className="text-center mb-5 sm:mb-8 md:mb-10">
                 {/* Day name */}
-                <p className={`${cinzel.className} text-[10px] sm:text-xs md:text-sm font-semibold text-motif-medium uppercase tracking-[0.2em] mb-2 sm:mb-3`}>
+                <p className="scope-one-regular text-[10px] sm:text-xs md:text-sm text-motif-deep uppercase tracking-[0.32em] mb-2 sm:mb-3">
                   {siteConfig.ceremony.day}
                 </p>
                 
                 {/* Month - Script style with warm gold */}
                 <div className="mb-2 sm:mb-4">
-                  <p className={`${cinzel.className} text-xl sm:text-2xl md:text-3xl lg:text-4xl text-motif-medium leading-none`}>
-                    May
+                  <p className="scope-one-regular text-xl sm:text-2xl md:text-3xl lg:text-4xl text-motif-deep leading-none tracking-[0.18em] uppercase">
+                  {new Date(siteConfig.ceremony.date).toLocaleString('default', { month: 'long' })}
                   </p>
                 </div>
                 
                 {/* Day and Year */}
                 <div className="flex items-center justify-center gap-2 sm:gap-3 md:gap-4 mb-4 sm:mb-6 md:mb-7">
-                  <p className={`${cinzel.className} text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal text-motif-deep leading-none`}>
-                    16
+                  <p className="scope-one-regular text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal text-motif-deep leading-none tracking-[0.18em]">
+                  {new Date(siteConfig.ceremony.date).getDate()}
                   </p>
                   <div className="h-10 sm:h-12 md:h-16 lg:h-20 w-[2px] bg-gradient-to-b from-motif-medium via-motif-deep to-motif-medium" />
-                  <p className={`${cinzel.className} text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-motif-deep leading-none`}>
-                    2026
+                  <p className="scope-one-regular text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-motif-deep leading-none tracking-[0.24em] uppercase">
+                  {new Date(siteConfig.ceremony.date).getFullYear()}
                   </p>
                 </div>
 
@@ -274,13 +273,13 @@ export function Details() {
                 </div>
 
                 {/* Time */}
-                <p className={`${cinzel.className} text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-motif-deep tracking-wide`}>
+                <p className="scope-one-regular text-sm sm:text-base md:text-lg lg:text-xl text-motif-deep tracking-[0.22em] uppercase">
                   {siteConfig.ceremony.time}
                 </p>
               </div>
 
               {/* Location Details */}
-              <div className="bg-gradient-to-br from-motif-silver/40 to-motif-silver rounded-xl p-3 sm:p-4 md:p-5 mb-4 sm:mb-6 border border-motif-deep/15">
+              <div className="bg-gradient-to-br from-motif-cream/90 to-motif-cream rounded-xl p-3 sm:p-4 md:p-5 mb-4 sm:mb-6 border border-motif-cream/15">
                 <div className="flex items-start gap-2 sm:gap-3 md:gap-4">
                   <MapPin className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-motif-deep mt-0.5 flex-shrink-0" />
                   <div className="flex-1 min-w-0">
@@ -301,13 +300,13 @@ export function Details() {
                   </div>
                   {/* QR Code for Ceremony - Right side */}
                   <div className="flex flex-col items-center gap-1.5 sm:gap-2 flex-shrink-0">
-                    <div className="bg-motif-silver p-1.5 sm:p-2 md:p-2.5 rounded-lg border border-motif-deep/20 shadow-sm">
+                    <div className="bg-motif-cream p-1.5 sm:p-2 md:p-2.5 rounded-lg border border-motif-cream/20 shadow-sm">
                       <QRCodeSVG
                         value={ceremonyMapsLink}
                         size={80}
                         level="M"
                         includeMargin={false}
-                        fgColor="#5B6655"
+                        fgColor="var(--color-motif-accent)"
                         bgColor="#ECE5DB"
                       />
                     </div>
@@ -322,7 +321,7 @@ export function Details() {
               <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4">
                 <button
                   onClick={() => openInMaps(ceremonyMapsLink)}
-                  className="flex-1 flex items-center justify-center gap-1.5 sm:gap-2 px-4 sm:px-5 py-2 sm:py-2.5 md:py-3 bg-motif-deep hover:bg-motif-accent text-motif-cream rounded-lg font-[family-name:var(--font-crimson)] font-semibold text-xs sm:text-sm md:text-base transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] premium-shadow"
+                  className="flex-1 flex items-center justify-center gap-1.5 sm:gap-2 px-4 sm:px-5 py-2 sm:py-2.5 md:py-3 bg-motif-accent hover:bg-motif-accent text-motif-cream rounded-lg font-[family-name:var(--font-crimson)] font-semibold text-xs sm:text-sm md:text-base transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] premium-shadow"
                   aria-label="Get directions to ceremony venue"
                 >
                   <Navigation className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 flex-shrink-0" />
@@ -330,11 +329,11 @@ export function Details() {
                 </button>
                 <button
                   onClick={() => copyToClipboard(ceremonyVenue, 'ceremony')}
-                  className="flex-1 flex items-center justify-center gap-1.5 sm:gap-2 px-4 sm:px-5 py-2 sm:py-2.5 md:py-3 bg-motif-cream border-2 border-motif-deep/30 hover:border-motif-deep/50 hover:bg-motif-silver/20 text-motif-deep rounded-lg font-[family-name:var(--font-crimson)] font-semibold text-xs sm:text-sm md:text-base transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                  className="flex-1 flex items-center justify-center gap-1.5 sm:gap-2 px-4 sm:px-5 py-2 sm:py-2.5 md:py-3 bg-motif-accent border-2 border-motif-cream/30 hover:border-motif-cream/60 hover:bg-motif-silver/20 text-motif-cream rounded-lg font-[family-name:var(--font-crimson)] font-semibold text-xs sm:text-sm md:text-base transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
                   aria-label="Copy ceremony venue address"
                 >
                   {copiedItems.has('ceremony') ? (
-                    <Check className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 flex-shrink-0 text-motif-deep" />
+                    <Check className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 flex-shrink-0 text-motif-cream" />
                   ) : (
                     <Copy className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 flex-shrink-0" />
                   )}
@@ -349,7 +348,7 @@ export function Details() {
         <div className="relative group">
           <div className="absolute -inset-1 bg-gradient-to-br from-motif-silver/22 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-lg" />
 
-          <div className="relative elegant-card bg-motif-silver rounded-xl sm:rounded-2xl overflow-hidden shadow-[0_16px_40px_rgba(0,0,0,0.18)] border border-motif-deep/25 premium-shadow hover:border-motif-deep/45 transition-all duration-300">
+          <div className="relative elegant-card bg-motif-cream rounded-xl sm:rounded-2xl overflow-hidden shadow-[0_16px_40px_rgba(0,0,0,0.18)] border border-motif-deep/25 premium-shadow hover:border-motif-deep/45 transition-all duration-300">
        
             <div className="relative w-full h-64 sm:h-72 md:h-80 lg:h-96 xl:h-[30rem] overflow-hidden">
               {receptionImages.map((src, index) => (
@@ -376,10 +375,10 @@ export function Details() {
                 <p className="text-sm sm:text-base md:text-lg font-[family-name:var(--font-ephesis)] text-[#FFF7F6] mb-1 sm:mb-2 drop-shadow-lg">
                   Reception
                 </p>
-                <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-[family-name:var(--font-crimson)] font-normal text-white mb-0.5 sm:mb-1 drop-shadow-lg uppercase tracking-[0.1em] leading-tight">
+                <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-[family-name:var(--font-crimson)] font-normal text-motif-cream mb-0.5 sm:mb-1 drop-shadow-lg uppercase tracking-[0.1em] leading-tight">
                   {siteConfig.reception.location}
                 </h3>
-                <p className="text-xs sm:text-sm md:text-base font-[family-name:var(--font-crimson)] text-white/95 drop-shadow-md tracking-wide">
+                <p className="text-xs sm:text-sm md:text-base font-[family-name:var(--font-crimson)] text-motif-cream/95 drop-shadow-md tracking-wide">
                   {siteConfig.reception.venue}
                 </p>
               </div>
@@ -405,7 +404,7 @@ export function Details() {
               </div>
 
         
-              <div className="bg-gradient-to-br from-motif-silver/40 to-motif-silver rounded-xl p-3 sm:p-4 md:p-5 mb-4 sm:mb-6 border border-motif-deep/15">
+              <div className="bg-gradient-to-br from-motif-cream/90 to-motif-cream rounded-xl p-3 sm:p-4 md:p-5 mb-4 sm:mb-6 border border-motif-cream/15">
                 <div className="flex items-start gap-2 sm:gap-3 md:gap-4">
                   <MapPin className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-motif-deep mt-0.5 flex-shrink-0" />
                   <div className="flex-1 min-w-0">
@@ -426,13 +425,13 @@ export function Details() {
                   </div>
               
                   <div className="flex flex-col items-center gap-1.5 sm:gap-2 flex-shrink-0">
-                  <div className="bg-motif-silver p-1.5 sm:p-2 md:p-2.5 rounded-lg border border-motif-deep/20 shadow-sm">
+                  <div className="bg-motif-cream p-1.5 sm:p-2 md:p-2.5 rounded-lg border border-motif-cream/20 shadow-sm">
                       <QRCodeSVG
                         value={receptionMapsLink}
                         size={80}
                         level="M"
                         includeMargin={false}
-                        fgColor="#5B6655"
+                        fgColor="var(--color-motif-accent)"
                         bgColor="#ECE5DB"
                       />
                     </div>
@@ -447,7 +446,7 @@ export function Details() {
               <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4">
                 <button
                   onClick={() => openInMaps(receptionMapsLink)}
-                  className="flex-1 flex items-center justify-center gap-1.5 sm:gap-2 px-4 sm:px-5 py-2 sm:py-2.5 md:py-3 bg-motif-deep hover:bg-motif-accent text-motif-cream rounded-lg font-[family-name:var(--font-crimson)] font-semibold text-xs sm:text-sm md:text-base transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] premium-shadow"
+                  className="flex-1 flex items-center justify-center gap-1.5 sm:gap-2 px-4 sm:px-5 py-2 sm:py-2.5 md:py-3 bg-motif-accent hover:bg-motif-accent text-motif-cream rounded-lg font-[family-name:var(--font-crimson)] font-semibold text-xs sm:text-sm md:text-base transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] premium-shadow"
                   aria-label="Get directions to reception venue"
                 >
                   <Navigation className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 flex-shrink-0" />
@@ -455,11 +454,11 @@ export function Details() {
                 </button>
                 <button
                   onClick={() => copyToClipboard(receptionVenue, 'reception')}
-                  className="flex-1 flex items-center justify-center gap-1.5 sm:gap-2 px-4 sm:px-5 py-2 sm:py-2.5 md:py-3 bg-motif-cream border-2 border-motif-deep/30 hover:border-motif-deep/50 hover:bg-motif-silver/20 text-motif-deep rounded-lg font-[family-name:var(--font-crimson)] font-semibold text-xs sm:text-sm md:text-base transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                  className="flex-1 flex items-center justify-center gap-1.5 sm:gap-2 px-4 sm:px-5 py-2 sm:py-2.5 md:py-3 bg-motif-accent border-2 border-motif-cream/30 hover:border-motif-cream/60 hover:bg-motif-silver/20 text-motif-cream rounded-lg font-[family-name:var(--font-crimson)] font-semibold text-xs sm:text-sm md:text-base transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
                   aria-label="Copy reception venue address"
                 >
                   {copiedItems.has('reception') ? (
-                    <Check className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 flex-shrink-0 text-motif-deep" />
+                    <Check className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 flex-shrink-0 text-motif-cream" />
                   ) : (
                     <Copy className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 flex-shrink-0" />
                   )}
@@ -481,13 +480,13 @@ export function Details() {
             <div className="h-px w-10 sm:w-14 md:w-20 bg-motif-silver/60" />
           </div>
           <h3
-            className={`${cinzel.className} text-xl sm:text-2xl md:text-3xl font-semibold text-motif-deep mb-3 sm:mb-4 uppercase`}
-            style={{ letterSpacing: "0.16em", textShadow: "0 2px 10px rgba(91,102,85,0.25)" }}
+            className="scope-one-regular text-xl sm:text-2xl md:text-3xl text-motif-cream mb-3 sm:mb-4 uppercase tracking-[0.2em]"
+            style={{ textShadow: "0 2px 10px color-mix(in srgb, var(--color-motif-cream) 20%, transparent)" }}
           >
             Attire Guidelines
           </h3>
           <p
-            className={`${cinzel.className} text-sm sm:text-base md:text-lg text-motif-medium font-normal`}
+            className="font-body text-sm sm:text-base md:text-lg text-motif-cream/95"
           >
             Please dress according to the guidelines below.
           </p>
@@ -497,15 +496,15 @@ export function Details() {
         <div className="space-y-5 sm:space-y-6 md:space-y-8">
           {/* Overall palette / general guidance */}
           <div className="relative group">
-            <div className="absolute -inset-1 bg-gradient-to-br from-motif-silver/22 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-lg" />
+            <div className="absolute -inset-1 bg-gradient-to-br from-motif-cream/22 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-lg" />
 
           
           </div>
 
-          {/* Role-based attire references */}
+{/*  
           <div className="text-center pt-1 sm:pt-2">
             <p
-              className={`${cinzel.className} text-[11px] sm:text-xs md:text-sm text-motif-medium uppercase tracking-[0.22em] mb-3 sm:mb-4`}
+              className="scope-one-regular text-[11px] sm:text-xs md:text-sm text-motif-medium uppercase tracking-[0.26em] mb-3 sm:mb-4"
             >
               Entourage & Family Attire References
             </p>
@@ -514,191 +513,77 @@ export function Details() {
               <div className="w-1.5 h-1.5 rounded-full bg-motif-silver" />
               <div className="h-px w-10 sm:w-14 bg-motif-silver/60" />
             </div>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
-            {[
-              {
-                title: "Parents",
-                src: "/Details/parents.jpg",
-                alt: "Parents attire guidelines",
-                notes: ["Please follow the look shown.", "Keep accessories classic and understated.", "Comfortable shoes recommended."],
-              },
-              {
-                title: "Principal Sponsors",
-                src: "/Details/principal.jpg",
-                alt: "Principal sponsors attire guidelines",
-                notes: ["Please follow the look shown.", "Aim for a polished, formal finish.", "Neutral/soft tones preferred."],
-              },
-              {
-                title: "Bridesmaids",
-                src: "/Details/bridesmaid.jpg",
-                alt: "Bridesmaids attire guidelines",
-                notes: ["Please follow the look shown.", "Hair/makeup: soft and elegant.", "Bring a shawl if you get chilly."],
-              },
-              {
-                title: "Groomsmen",
-                src: "/Details/groomsmen.jpg",
-                alt: "Groomsmen attire guidelines",
-                notes: ["Please follow the look shown.", "Keep styling neat and uniform.", "Dark shoes/belt to match."],
-              },
-              {
-                title: "Flower Girl & Ring Bearer",
-                src: "/Details/flowerGirl/Ring%20bearer.jpg",
-                alt: "Flower girl and ring bearer attire guidelines",
-                notes: ["Please follow the look shown.", "Comfort first—easy to move in.", "Bring an extra change if needed."],
-              },
-            ].map((item) => (
-              <div key={item.title} className="relative group">
-                <div className="absolute -inset-1 bg-gradient-to-br from-motif-silver/18 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-lg" />
-                <div className="relative bg-motif-silver/80 backdrop-blur-sm rounded-xl sm:rounded-2xl overflow-hidden border border-motif-deep/15 hover:border-motif-deep/60 hover:shadow-[0_22px_55px_rgba(0,0,0,0.18)] transition-all duration-300">
-                  {/* Taller image area + contain to show full outfit */}
-                  <div className="relative w-full h-[360px] sm:h-[420px] md:h-[460px] overflow-hidden bg-motif-cream/50">
-                    <Image
-                      src={item.src}
-                      alt={item.alt}
-                      fill
-                      className="object-contain p-3 sm:p-4 md:p-5 transition-transform duration-700 group-hover:scale-[1.02]"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    />
-                    {/* Subtle frame + label */}
-                    <div className="absolute inset-0 ring-1 ring-inset ring-motif-deep/10" />
-                    <div className="absolute top-3 left-3 right-3 flex items-center justify-between">
-                      <h4
-                        className={`${cinzel.className} text-[11px] sm:text-xs font-semibold text-motif-deep uppercase tracking-[0.18em] px-3 py-1.5 rounded-full border backdrop-blur-md`}
-                        style={{
-                          backgroundColor: "color-mix(in srgb, var(--color-motif-cream) 70%, transparent)",
-                          borderColor: "color-mix(in srgb, var(--color-motif-deep) 20%, transparent)",
-                        }}
-                      >
-                        {item.title}
-                      </h4>
-                      <span
-                        className={`${cinzel.className} hidden sm:inline text-[10px] tracking-[0.22em] uppercase px-3 py-1.5 rounded-full border`}
-                        style={{
-                          color: "var(--color-motif-medium)",
-                          backgroundColor: "color-mix(in srgb, var(--color-motif-cream) 75%, transparent)",
-                          borderColor: "color-mix(in srgb, var(--color-motif-medium) 25%, transparent)",
-                        }}
-                      >
-                        Reference
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="p-4 sm:p-5">
-                    <ul className="space-y-1.5">
-                      {item.notes.map((n) => (
-                        <li
-                          key={n}
-                          className={`${cormorant.className} text-sm sm:text-base text-motif-deep/80 leading-relaxed`}
-                        >
-                          <span className="mr-2 text-motif-medium">•</span>
-                          {n}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  
-                </div>
-                <div className="relative bg-motif-silver backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-7 lg:p-9 border hover:shadow-[0_20px_48px_rgba(0,0,0,0.24)] hover:border-motif-deep/70 transition-all duration-300">
-              <h4
-                className={`${cinzel.className} text-base sm:text-lg md:text-xl lg:text-2xl font-semibold text-motif-deep mb-3 sm:mb-4 uppercase tracking-[0.16em] text-center px-2`}
-              >
-                Guests
-              </h4>
-
-              <p
-                className={`${cinzel.className} text-center text-xs sm:text-sm md:text-base lg:text-lg text-motif-deep/90 font-light leading-relaxed mb-4 sm:mb-5 max-w-2xl mx-auto px-3`}
-              >
-                Formal or semi‑formal attire in our color palette is appreciated.
-              </p>
-
-              <div className="flex justify-center gap-2 sm:gap-3 md:gap-4 flex-wrap mb-4 sm:mb-5 px-2">
-                {siteConfig.dressCode.colors.split(",").map((color) => (
-                  <div
-                    key={color.trim()}
-                    className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 rounded-full shadow-md border border-white ring-2 ring-motif-silver/40 hover:scale-110 transition-transform duration-300"
-                    style={{ backgroundColor: color.trim() }}
-                    title={color.trim()}
-                  />
-                ))}
-              </div>
-
-              <div className="text-center pt-3 sm:pt-4 border-t border-motif-silver/70 px-3 sm:px-4">
-                <p className="text-sm sm:text-base md:text-lg font-[family-name:var(--font-crimson)] text-motif-deep leading-relaxed mb-1.5">
-                  <span className="font-semibold">Dress code:</span> Semi‑formal.
-                </p>
-                <p className="text-xs sm:text-sm md:text-base font-[family-name:var(--font-crimson)] text-motif-deep/80 leading-relaxed italic">
-                  To complement the beauty and theme of our special day, we kindly invite our guests to dress in formal or
-                  semi‑formal attire within the palette above. Thank you for celebrating with us—your presence (and style!)
-                  means the world.
-                </p>
-              </div>
-            </div>
-              </div>
-            ))}
-          </div>
-
+          </div> */}
+      
           {/* Guest Attire */}
-          {/* <div className="relative group">
-            <div className="absolute -inset-1 bg-gradient-to-br from-[#F3C66C]/18 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-lg" />
+          <div className="relative group">
+            <div className="absolute -inset-1 bg-gradient-to-br from-motif-cream to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-lg" />
             
-            <div className="relative bg-[#FDF6EA] backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-7 lg:p-9 border border-[#E0C5A2] shadow-[0_16px_40px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_48px_rgba(0,0,0,0.6)] hover:border-[#F3C66C]/80 transition-all duration-300">
+            <div className="relative bg-motif-cream backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-7 lg:p-9 border border-motif-cream/15 shadow-[0_16px_40px_rgba(0,0,0,0.18)] hover:shadow-[0_20px_48px_rgba(0,0,0,0.22)] hover:border-motif-cream/25 transition-all duration-300">
               <h4
-                className={`${montserrat.className} text-base sm:text-lg md:text-xl lg:text-2xl font-semibold text-[#8B1E1E] mb-4 sm:mb-5 md:mb-6 uppercase tracking-[0.16em] text-center px-2`}
+                className="scope-one-regular text-base sm:text-lg md:text-xl lg:text-2xl font-normal text-motif-deep mb-4 sm:mb-5 md:mb-6 uppercase tracking-[0.18em] text-center px-2"
               >
                 Guest Attire
               </h4>
 
-              <p className="text-center text-xs sm:text-sm md:text-base lg:text-lg font-[family-name:var(--font-crimson)] text-[#C44569]/90 font-light leading-relaxed mb-4 sm:mb-5 md:mb-6 max-w-xl mx-auto px-3">
-                Please follow the color palette below for your outfit.
+              <p className="text-center text-xs sm:text-sm md:text-base lg:text-lg font-body text-motif-deep/85 font-light leading-relaxed mb-4 sm:mb-5 md:mb-6 max-w-xl mx-auto px-3">
+                Dress semi-formally in shades from our palette below. Soft neutrals, muted greens, and warm rose tones will look beautifully together in photos.
+              </p>
+
+              <p className="text-center text-[11px] sm:text-xs md:text-sm scope-one-regular uppercase tracking-[0.26em] text-motif-deep/95 mb-4 sm:mb-5">
+                Color Palette
               </p>
 
         
-              <div className="relative w-full aspect-[4/3] sm:aspect-[3/2] max-w-2xl mx-auto rounded-lg sm:rounded-xl overflow-hidden border border-[#C44569]/30 mb-4 sm:mb-6 md:mb-8">
+              <div className="relative w-full aspect-[4/3] sm:aspect-[3/2] max-w-2xl mx-auto rounded-lg sm:rounded-xl overflow-hidden border border-motif-deep/15 mb-4 sm:mb-6 md:mb-8">
                 <Image
-                  src="/Details/guest (3).png"
+                  src="/Details/guestAttire.png"
                   alt="Guest attire inspiration — follow the color palette"
                   fill
-                  className="object-contain bg-[#FFF7F6]/50 p-2 sm:p-3"
+                  className="object-contain bg-motif-silver/15 p-2 sm:p-3"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 672px"
                 />
               </div>
 
         
               <div className="flex justify-center gap-2 sm:gap-3 md:gap-4 flex-wrap mb-5 sm:mb-6 md:mb-7 px-2">
-                {["#CBA990", "#EBD3B9", "#F5E1C0"].map((color) => (
+                {dressCodeColors.map((color) => (
                   <div
                     key={color}
-                    className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 rounded-full shadow-md border-2 border-white ring-2 ring-[#C44569]/30 hover:scale-110 transition-transform duration-300"
-                    style={{ backgroundColor: color }}
+                    role="img"
+                    aria-label={`Dress code color swatch ${color}`}
                     title={color}
+                    className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 rounded-full shadow-md border-2 border-white ring-2 ring-motif-deep/15 hover:scale-110 transition-transform duration-300"
+                    style={{ backgroundColor: color }}
                   />
                 ))}
               </div>
               
  
-              <div className="text-center pt-3 sm:pt-4 border-t border-[#C44569]/20 px-3 sm:px-4">
-                <p className="text-sm sm:text-base md:text-lg lg:text-xl font-[family-name:var(--font-crimson)] text-[#C44569] leading-relaxed mb-3 sm:mb-4">
-                  <span className="font-semibold">Semi-Formal</span>
+              <div className="text-center pt-3 sm:pt-4 border-t border-motif-deep/15 px-3 sm:px-4 space-y-2">
+                <p className="scope-one-regular text-sm sm:text-base md:text-lg lg:text-xl text-motif-deep leading-relaxed uppercase tracking-[0.18em]">
+                  {dressCodeTheme}
+                </p>
+                <p className="font-body text-xs sm:text-sm md:text-base text-motif-deep/80 leading-relaxed">
+                  Please avoid shorts, maong jeans, t-shirts, or slippers. Thank you for helping us keep the look polished.
                 </p>
               </div>
             </div>
-          </div> */}
+          </div>
         </div>
 
      {/* Gentle Reminders Container */}
      <div className="relative z-10 max-w-4xl mx-auto px-3 sm:px-5 mt-8 sm:mt-12 md:mt-16">
-        <div className="relative overflow-hidden rounded-xl sm:rounded-2xl border border-motif-cream/40 bg-motif-cream backdrop-blur-lg shadow-[0_18px_40px_color-mix(in_srgb,var(--color-motif-cream)_15%,transparent)]">
+       <div className="relative overflow-hidden rounded-xl sm:rounded-2xl border border-motif-cream/35 bg-motif-deep backdrop-blur-lg shadow-[0_18px_40px_color-mix(in_srgb,var(--color-motif-deep)_55%,transparent)]">
           {/* Content */}
           <div className="relative z-10 px-4 sm:px-6 md:px-8 py-6 sm:py-8 md:py-10">
             {/* Animated couple photos carousel */}
-            <div className="flex justify-center gap-2 sm:gap-3 md:gap-4 mb-6 sm:mb-8">
+            {/* <div className="flex justify-center gap-2 sm:gap-3 md:gap-4 mb-6 sm:mb-8">
               {coupleImages.map((image, index) => {
                 const isActive = index === currentImageIndex
-                // Alternate rotation: -5deg, 5deg, -3deg, 3deg for variety
+             
                 const baseRotation = index === 0 ? -5 : index === 1 ? 5 : index === 2 ? -3 : 3
-                // Add gentle rotation animation for active image
+           
                 const currentRotation = isActive 
                   ? baseRotation + Math.sin(rotationOffset * Math.PI / 180) * 2 
                   : baseRotation
@@ -725,10 +610,10 @@ export function Details() {
                   </div>
                 )
               })}
-            </div>
+            </div> */}
 
             {/* Title */}
-            <h3 className={`${cinzel.className} text-2xl sm:text-3xl md:text-4xl text-center text-motif-deep mb-6 sm:mb-8 font-normal tracking-wide`}>
+            <h3 className="scope-one-regular text-2xl sm:text-3xl md:text-4xl text-center text-motif-cream mb-6 sm:mb-8 tracking-[0.26em] uppercase">
               GENTLE REMINDERS
             </h3>
 
@@ -736,10 +621,10 @@ export function Details() {
             <div className="space-y-4 sm:space-y-5 md:space-y-6 max-w-2xl mx-auto">
               {/* Children Reminder */}
               <div className="bg-motif-silver/60 rounded-lg p-4 sm:p-5 md:p-6 border border-motif-deep/10 shadow-sm">
-                <h4 className={`${cinzel.className} text-base sm:text-lg md:text-xl font-semibold text-motif-deep mb-2 sm:mb-3`}>
+                <h4 className="scope-one-regular text-base sm:text-lg md:text-xl text-motif-cream mb-2 sm:mb-3 tracking-[0.18em] uppercase">
                   CHILDREN
                 </h4>
-                <p className={`${cormorant.className} text-sm sm:text-base md:text-lg text-motif-deep/80 leading-relaxed`}>
+                <p className={`${cormorant.className} text-sm sm:text-base md:text-lg text-motif-cream/85 leading-relaxed`}>
                   While we love your little ones, we kindly request an adults-only celebration so everyone can relax and enjoy the evening.
                 </p>
               </div>
@@ -756,20 +641,20 @@ export function Details() {
 
               {/* Arrival Reminder */}
               <div className="bg-motif-silver/60 rounded-lg p-4 sm:p-5 md:p-6 border border-motif-deep/10 shadow-sm">
-                <h4 className={`${cinzel.className} text-base sm:text-lg md:text-xl font-semibold text-motif-deep mb-2 sm:mb-3`}>
+                <h4 className="scope-one-regular text-base sm:text-lg md:text-xl text-motif-cream mb-2 sm:mb-3 tracking-[0.18em] uppercase">
                   ARRIVAL
                 </h4>
-                <p className={`${cormorant.className} text-sm sm:text-base md:text-lg text-motif-deep/80 leading-relaxed`}>
+                <p className={`${cormorant.className} text-sm sm:text-base md:text-lg text-motif-cream/85 leading-relaxed`}>
                   To ensure everything runs smoothly, please arrive at least 30 minutes before the ceremony starts. This will give you time to find your seat, take in the beautiful setup, and be fully present for our special moment.
                 </p>
               </div>
 
               {/* Gifts Reminder */}
               <div className="bg-motif-silver/60 rounded-lg p-4 sm:p-5 md:p-6 border border-motif-deep/10 shadow-sm">
-                <h4 className={`${cinzel.className} text-base sm:text-lg md:text-xl font-semibold text-motif-deep mb-2 sm:mb-3`}>
+                <h4 className="scope-one-regular text-base sm:text-lg md:text-xl text-motif-cream mb-2 sm:mb-3 tracking-[0.18em] uppercase">
                   GIFTS
                 </h4>
-                <p className={`${cormorant.className} text-sm sm:text-base md:text-lg text-motif-deep/80 leading-relaxed`}>
+                <p className={`${cormorant.className} text-sm sm:text-base md:text-lg text-motif-cream/85 leading-relaxed`}>
                 We are grateful to God for your love and prayers on our special day.
                 For those who wish to give a gift, a monetary gift to help us begin our life together would be deeply appreciated.                </p>
               </div>
@@ -873,7 +758,7 @@ export function Details() {
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
                   <div className="space-y-2">
                     <h3
-                      className={`${cinzel.className} text-xl sm:text-2xl md:text-3xl font-bold flex items-center gap-3`}
+                      className="scope-one-regular text-xl sm:text-2xl md:text-3xl flex items-center gap-3 tracking-[0.18em] uppercase"
                       style={{ color: "var(--color-motif-cream)" }}
                     >
                       {showImageModal === "ceremony" ? (
@@ -959,7 +844,7 @@ export function Details() {
                       onClick={() =>
                         openInMaps(showImageModal === "ceremony" ? ceremonyMapsLink : receptionMapsLink)
                       }
-                      className="flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-semibold text-sm transition-all duration-300 hover:scale-105 hover:shadow-xl active:scale-95 shadow-lg whitespace-nowrap bg-motif-cream text-motif-deep"
+                      className="flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-semibold text-sm transition-all duration-300 hover:scale-105 hover:shadow-xl active:scale-95 shadow-lg whitespace-nowrap bg-motif-deep border-2 border-motif-cream/30 hover:bg-motif-accent text-motif-cream"
                     >
                       <Navigation className="w-4 h-4 sm:w-5 sm:h-5" />
                       <span>Get Directions</span>

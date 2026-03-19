@@ -33,11 +33,12 @@ export const siteConfig = {
     location: "Hotel Del Rio",
     venue: "M. H. Del Pilar Street, Iloilo City, Philippines, 5000",
     date: "May 27, 2026",
-    time: "5:00 PM",
+    time: "6:00 PM",
   },
   dressCode: {
-      theme: "SEMI-FORMAL",
-    colors: "#3A4C3E, #879476, #CE979D, #EED1D5, #F4F3F1, #ffffff",
+    theme: "Semi-Formal",
+    // Comma-separated so components can render swatches (see Details section).
+    colors: "#48553C, #727B42, #7D2734,#CE979D",
     sponsors: {
       male: "Guests are kindly requested to wear attire in any of the shades within our wedding palette.Color pallet and image to be followed. STRICTLY no shorts, maong jeans, t-shirts, or slippers.",
       female: "Guests are kindly requested to wear attire in any of the shades within our wedding palette.Color pallet and image to be followed. STRICTLY no shorts, maong jeans, t-shirts, or slippers."

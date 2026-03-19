@@ -306,7 +306,7 @@ export function Entourage() {
   }
 
   return (
-    <div className="relative w-full" style={{ backgroundColor: palette.background }}>
+    <div className="relative w-full" style={{ backgroundColor: "var(--color-motif-accent)" }}>
       {/* Full-bleed layered background — champagne + beige with soft movement */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden>
         {/* Soft diagonal wash */}
@@ -381,22 +381,22 @@ export function Entourage() {
       {/* Section Header */}
       <div className={`relative z-30 text-center mb-4 sm:mb-5 md:mb-6 px-3 sm:px-4 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-10"}`}>
         <p
-          className={`${cormorant.className} text-[0.7rem] sm:text-xs md:text-sm uppercase tracking-[0.28em] mb-2`}
-          style={{ color: palette.softBrown }}
+          className={`scope-one-regular text-[0.7rem] sm:text-xs md:text-sm uppercase tracking-[0.28em] mb-2`}
+          style={{ color: "var(--color-motif-cream)" }}
         >
           Those who stand with {siteConfig.couple.groomNickname} &amp; {siteConfig.couple.brideNickname}
         </p>
 
         <h2
           className={`${cinzel.className} text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold mb-1 sm:mb-2 md:mb-2.5`}
-          style={{ color: palette.deep, textShadow: "0 2px 10px rgba(78,59,49,0.22)" }}
+          style={{ color: "var(--color-motif-cream)", textShadow: "0 2px 10px rgba(78,59,49,0.22)" }}
         >
           Wedding Entourage
         </h2>
 
         <p
           className={`${cormorant.className} text-xs sm:text-sm md:text-base mb-2 sm:mb-2.5 md:mb-3 italic opacity-90`}
-          style={{ color: palette.softBrown }}
+          style={{ color: "var(--color-motif-cream)" }}
         >
           Honoring those who share in our joy
         </p>
