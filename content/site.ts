@@ -45,7 +45,7 @@ export const siteConfig = {
       palette: "#010200, #CCAE78", 
     },
     guests: {
-      image: "/Details/guestAttires.png",
+      image: "/Details/guestAttirenew.png",
       notes: "Formal Attire in the following shades.",
       palette: "#792C2A, #DFB2AD, #819234, #CCAE78", 
     },
