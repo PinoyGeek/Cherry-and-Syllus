@@ -9,7 +9,7 @@ interface HeroProps {
 }
 
 const BACKGROUND_VIDEO_SRC =
-  "/background_music/Flowers - Video Background HD 1080p - iBrand Boost (720p, h264).mp4"
+  "/background_music/Flowers - Video Background HD 1080p - iBrand Boost (1080p, h264).mp4"
 
 export function Hero({ onOpen, visible }: HeroProps) {
   const [contentVisible, setContentVisible] = useState(false)
