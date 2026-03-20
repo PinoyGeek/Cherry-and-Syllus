@@ -80,7 +80,7 @@ const timelineEvents: TimelineEvent[] = [
     imageSrc: "/weddingtimeline/WeddingCeremony.png",
   },
   {
-    time: "4:30 PM",
+    time: "5:00 PM",
     title: "Cocktail Hour",
     description: "Enjoy drinks and light bites as we transition into the reception and mingle with guests.",
     location: receptionVenue,
@@ -88,7 +88,7 @@ const timelineEvents: TimelineEvent[] = [
     imageSrc: "/weddingtimeline/CockTailHour.png",
   },
   {
-    time: "5:00 PM",
+    time: "6:00 PM",
     title: "Program Starts",
     description: `Celebrate the grand entrance of ${groomNickname} & ${brideNickname} and the start of the evening festivities.`,
     location: receptionVenue,
@@ -96,7 +96,7 @@ const timelineEvents: TimelineEvent[] = [
     imageSrc: "/weddingtimeline/reception welcom.png",
   },
   {
-    time: "7:30 PM",
+    time: "7:00 PM",
     title: "Dinner Service",
     description: "Share a relaxed meal together as we continue the celebration.",
     location: receptionVenue,
@@ -104,7 +104,7 @@ const timelineEvents: TimelineEvent[] = [
     imageSrc: "/weddingtimeline/DinnerService.png",
   },
   {
-    time: "8:00 PM",
+    time: "8:30 PM",
     title: "Party",
     description: "Let's dance the night away and celebrate this new chapter!",
     location: receptionVenue,

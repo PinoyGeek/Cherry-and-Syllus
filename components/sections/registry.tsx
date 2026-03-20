@@ -40,9 +40,7 @@ export function Registry() {
         </h2>
         
         <p className="text-xs sm:text-sm md:text-base lg:text-lg text-motif-cream/90 font-light max-w-2xl mx-auto leading-relaxed px-2">
-        WITH ALL THAT WE HAVE, WE’VE BEEN TRULY BLESSED. YOUR PRESENCE AND
-PRAYERS ARE ALL THAT WE REQUEST. BUT IF YOU DESIRE TO GIVE NONETHELESS,
-MONETARY GIFT IS ONE WE SUGGEST.
+        With grateful hearts, We feel truly blessed with all that we have. Your presence and prayers are the greatest gifts we could ask for. However, if you wish to give something more, a monetary gift would be sincerely appreciated.
         </p>
         
         <div className="flex items-center justify-center gap-2 mt-3 sm:mt-4">
@@ -54,9 +52,12 @@ MONETARY GIFT IS ONE WE SUGGEST.
 
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6">
   {/* GCASH QR toggle */}
+  <div className="flex items-center justify-center mb-4">
+  <Image src="/QR/QR.png" alt="GCash QR" width={200} height={200} className="mx-auto" />
+  </div>
 
-
-      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6">
+      <div className="relativ
+      e z-10 max-w-5xl mx-auto px-4 sm:px-6">
         <div className="text-center">
           <p className="text-xs sm:text-sm text-motif-cream/90 italic">
             Thank you from the bottom of our hearts.

@@ -25,7 +25,7 @@ export function Hero() {
           {/* Monogram at top */}
           <div className="flex justify-center mb-8">
             <Image
-              src="/monogram/monogram.png"
+              src="/monogram/newMonogram.png"
               alt={`${siteConfig.couple.brideNickname} & ${siteConfig.couple.groomNickname} monogram`}
               width={160}
               height={160}

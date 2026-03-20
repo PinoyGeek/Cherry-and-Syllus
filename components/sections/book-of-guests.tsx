@@ -40,7 +40,7 @@ const BOOK_DARK = "var(--color-motif-deep)"      // headings / names
 const BOOK_DARKER = "var(--color-motif-deep)"  // body text (steel blue depth)
 const BOOK_CREAM = "var(--color-motif-cream)"    // card surfaces
 const DECO_FILTER_BOOK =
-  "brightness(0) saturate(100%) invert(39%) sepia(18%) saturate(486%) hue-rotate(62deg) brightness(94%) contrast(88%)"
+  "brightness(0) saturate(100%) invert(92%) sepia(6%) saturate(186%) hue-rotate(63deg) brightness(97%) contrast(94%)"
 
 export function BookOfGuests() {
   const [totalGuests, setTotalGuests] = useState(0)
@@ -187,7 +187,7 @@ export function BookOfGuests() {
       {/* Background — warm brown */}
       <div
         className="absolute inset-0 -z-10"
-        style={{ backgroundColor: 'var(--color-motif-cream)' }}
+        style={{ backgroundColor: 'var(--color-motif-deep)' }}
       />
 
       {/* Flower decoration — warm brown tint */}
@@ -240,28 +240,28 @@ export function BookOfGuests() {
       <div className="relative z-10 text-center mb-3 sm:mb-4 md:mb-6 px-2 sm:px-3 md:px-4">
         <p
           className={`${cormorant.className} text-[0.6rem] sm:text-[0.7rem] md:text-xs uppercase tracking-[0.25em] mb-1 sm:mb-1.5 mt-4 sm:mt-6 md:mt-8`}
-          style={{ color: BOOK_DARK }}
+          style={{ color: "var(--color-motif-cream)" }}
         >
           Our Cherished Guests
         </p>
         <h2
           className={`${cinzel.className} text-xl sm:text-3xl md:text-4xl lg:text-5xl mb-1 sm:mb-2 md:mb-3`}
-          style={{ color: BOOK_DARK }}
+          style={{ color: "var(--color-motif-cream)" }}
         >
           Book of Guests
         </h2>
         <p
           className={`${cormorant.className} text-[10px] sm:text-xs md:text-sm font-light max-w-lg mx-auto leading-relaxed px-2`}
-          style={{ color: BOOK_DARKER }}
+          style={{ color: "var(--color-motif-cream)" }}
         >
           Meet the cherished souls joining us in celebration — your presence makes our day truly special
         </p>
         <div className="flex items-center justify-center gap-1 sm:gap-1.5 mt-1.5 sm:mt-2.5 md:mt-3">
-          <div className="w-6 sm:w-10 md:w-12 h-px opacity-50" style={{ backgroundColor: BOOK_ACCENT }} />
-          <div className="w-0.5 h-0.5 sm:w-1 sm:h-1 rounded-full opacity-70" style={{ backgroundColor: BOOK_ACCENT }} />
-          <div className="w-0.5 h-0.5 sm:w-1 sm:h-1 rounded-full opacity-50" style={{ backgroundColor: BOOK_ACCENT }} />
-          <div className="w-0.5 h-0.5 sm:w-1 sm:h-1 rounded-full opacity-70" style={{ backgroundColor: BOOK_ACCENT }} />
-          <div className="w-6 sm:w-10 md:w-12 h-px opacity-50" style={{ backgroundColor: BOOK_ACCENT }} />
+          <div className="w-6 sm:w-10 md:w-12 h-px opacity-50" style={{ backgroundColor: "var(--color-motif-deep)" }} />
+          <div className="w-0.5 h-0.5 sm:w-1 sm:h-1 rounded-full opacity-70" style={{ backgroundColor: "var(--color-motif-deep)" }} />
+          <div className="w-0.5 h-0.5 sm:w-1 sm:h-1 rounded-full opacity-50" style={{ backgroundColor: "var(--color-motif-deep)" }} />
+          <div className="w-0.5 h-0.5 sm:w-1 sm:h-1 rounded-full opacity-70" style={{ backgroundColor: "var(--color-motif-deep)" }} />
+          <div className="w-6 sm:w-10 md:w-12 h-px opacity-50" style={{ backgroundColor: "var(--color-motif-deep)" }} />
         </div>
       </div>
 
@@ -347,7 +347,7 @@ export function BookOfGuests() {
                     <div className="relative flex-shrink-0">
                       <div
                         className="w-9 h-9 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center shadow-md ring-2 ring-white/60"
-                        style={{ backgroundColor: BOOK_ACCENT }}
+                        style={{ backgroundColor: "var(--color-motif-accent)" }}
                       >
                         <span className="text-white font-semibold text-xs sm:text-base md:text-lg">
                           {getInitials(guest.name)}

@@ -27,7 +27,7 @@ const palette = {
 } as const
 
 const DECO_FILTER =
-  "brightness(0) saturate(100%) invert(39%) sepia(18%) saturate(486%) hue-rotate(62deg) brightness(94%) contrast(88%)"
+  "brightness(0) saturate(100%) invert(92%) sepia(6%) saturate(186%) hue-rotate(63deg) brightness(97%) contrast(94%)"
 
 // Helper function to convert text to title case (first letter of each word uppercase)
 const toTitleCase = (str: string) => {
@@ -115,18 +115,18 @@ export function Footer() {
   const groomNickname = siteConfig.couple.groomNickname
 
   return (
-    <div className="relative w-full" style={{ backgroundColor: palette.background }}>
+    <div className="relative w-full" style={{ backgroundColor: "var(--color-motif-deep)" }}>
       {/* Full-bleed layered background — align with gallery/details */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden>
-        <div
+        {/* <div
           className="absolute inset-0 opacity-[0.25]"
           style={{
             background: 'linear-gradient(165deg, var(--color-motif-cream) 0%, color-mix(in srgb, var(--color-motif-silver) 13%, transparent) 35%, color-mix(in srgb, var(--color-motif-medium) 6%, transparent) 70%, color-mix(in srgb, var(--color-motif-deep) 3%, transparent) 100%)',
           }}
-        />
+        /> */}
         <div
           className="absolute inset-0 opacity-[0.08]"
-          style={{ background: 'radial-gradient(ellipse 80% 50% at 50% 15%, var(--color-motif-silver) 0%, transparent 55%)' }}
+          style={{ background: 'radial-gradient(ellipse 80% 50% at 50% 15%, var(--color-motif-medium) 0%, transparent 55%)' }}
         />
       </div>
 
@@ -155,7 +155,7 @@ export function Footer() {
         >
           <div className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 opacity-95">
             <Image
-              src="/monogram/monogram.png"
+              src="/monogram/newMonogram.png"
               alt={`${groomNickname} & ${brideNickname} monogram`}
               fill
               className="object-contain"
@@ -167,13 +167,13 @@ export function Footer() {
 
         {/* Names & Date below illustration — dark text on white */}
         <div className="mt-3 sm:mt-4 md:mt-5 text-center">
-          <p className={`${cormorant.className} tracking-[0.25em] sm:tracking-[0.3em] text-xs sm:text-sm md:text-base uppercase`} style={{ color: palette.deep }}>
+          <p className={`${cormorant.className} tracking-[0.25em] sm:tracking-[0.3em] text-xs sm:text-sm md:text-base uppercase`} style={{ color: "var(--color-motif-cream)" }}>
             {brideNickname} & {groomNickname}
           </p>
-          <p className={`${cormorant.className} text-sm sm:text-base md:text-lg mt-1 sm:mt-2`} style={{ color: palette.deep }}>
+          <p className={`${cormorant.className} text-sm sm:text-base md:text-lg mt-1 sm:mt-2`} style={{ color: "var(--color-motif-cream)" }}>
             {ceremonyDate}
           </p>
-          <p className={`${cormorant.className} text-xs sm:text-sm md:text-base mt-1 sm:mt-2`} style={{ color: palette.deep }}>
+          <p className={`${cormorant.className} text-xs sm:text-sm md:text-base mt-1 sm:mt-2`} style={{ color: "var(--color-motif-cream)" }}>
             {combinedVenue ?? ceremonyVenue}
           </p>
         </div>
@@ -186,18 +186,18 @@ export function Footer() {
             <div className="mb-5 sm:mb-6 md:mb-8">
               <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4 md:mb-5">
                 <div className="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-full flex items-center justify-center border flex-shrink-0 shadow-md" style={{ backgroundColor: 'color-mix(in srgb, var(--color-motif-deep) 9%, transparent)', borderColor: 'color-mix(in srgb, var(--color-motif-deep) 25%, transparent)' }}>
-                  <Heart className="w-5 h-5 sm:w-6 sm:h-6 md:w-6 md:h-6 flex-shrink-0" style={{ color: palette.deep }} fill="var(--color-motif-deep)" />
+                  <Heart className="w-5 h-5 sm:w-6 sm:h-6 md:w-6 md:h-6 flex-shrink-0" style={{ color: "var(--color-motif-cream)" }} fill="var(--color-motif-deep)" />
                 </div>
-                <h3 className={`${cinzel.className} text-xl sm:text-2xl md:text-3xl lg:text-4xl font-normal`} style={{ color: palette.deep }}>{groomNickname} & {brideNickname}</h3>
+                <h3 className={`${cinzel.className} text-xl sm:text-2xl md:text-3xl lg:text-4xl font-normal`} style={{ color: "var(--color-motif-cream)" }}>{groomNickname} & {brideNickname}</h3>
               </div>
               <div className="space-y-2.5 sm:space-y-3 md:space-y-4">
-                <div className={`flex items-center gap-2 sm:gap-2.5 md:gap-3 ${cormorant.className}`} style={{ color: palette.softBrown }}>
-                  <Calendar className="w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 flex-shrink-0" style={{ color: palette.deep }} />
-                  <span className="text-sm sm:text-base md:text-lg font-medium text-motif-deep">{ceremonyDate}</span>
+                <div className={`flex items-center gap-2 sm:gap-2.5 md:gap-3 ${cormorant.className}`} style={{ color: "var(--color-motif-cream)" }}>
+                  <Calendar className="w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 flex-shrink-0" style={{ color: "var(--color-motif-cream)" }} />
+                  <span className="text-sm sm:text-base md:text-lg font-medium text-motif-cream">{ceremonyDate}</span>
                 </div>
-                <div className={`flex items-center gap-2 sm:gap-2.5 md:gap-3 ${cormorant.className}`} style={{ color: palette.softBrown }}>
-                  <MapPin className="w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 flex-shrink-0" style={{ color: palette.deep }} />
-                  <span className="text-xs sm:text-sm md:text-base leading-relaxed text-motif-deep">{toTitleCase(ceremonyVenue)}</span>
+                <div className={`flex items-center gap-2 sm:gap-2.5 md:gap-3 ${cormorant.className}`} style={{ color: "var(--color-motif-cream)" }}>
+                  <MapPin className="w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 flex-shrink-0" style={{ color: "var(--color-motif-cream)" }} />
+                  <span className="text-xs sm:text-sm md:text-base leading-relaxed text-motif-cream">{toTitleCase(ceremonyVenue)}</span>
                 </div>
               </div>
             </div>
@@ -299,30 +299,30 @@ export function Footer() {
           {/* Contact + Quick Links */}
           <motion.div className="space-y-5 sm:space-y-6 md:space-y-7" variants={fadeInUp}>
             <div>
-              <h4 className={`${cinzel.className} font-semibold text-base sm:text-lg md:text-xl mb-3 sm:mb-4 md:mb-5 flex items-center gap-2 sm:gap-2.5 md:gap-3`} style={{ color: palette.softBrown }}>
-                <div className="w-1.5 sm:w-2 h-6 sm:h-7 md:h-8 rounded-full" style={{ backgroundColor: palette.deep }} /> <span className="text-motif-deep">Follow Us</span>
+              <h4 className={`${cinzel.className} font-semibold text-base sm:text-lg md:text-xl mb-3 sm:mb-4 md:mb-5 flex items-center gap-2 sm:gap-2.5 md:gap-3`} style={{ color: "var(--color-motif-cream)" }}>
+                <div className="w-1.5 sm:w-2 h-6 sm:h-7 md:h-8 rounded-full" style={{ backgroundColor: "var(--color-motif-cream)" }} /> <span className="text-motif-cream">Follow Us</span>
               </h4>
               <div className="flex items-center gap-2 sm:gap-2.5 md:gap-3 flex-wrap">
-                <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center h-10 w-10 sm:h-11 sm:w-11 rounded-full ring-1 transition-all duration-200 hover:scale-110" style={{ backgroundColor: 'color-mix(in srgb, var(--color-motif-medium) 8%, transparent)', color: palette.deep }} aria-label="Facebook">
+                <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center h-10 w-10 sm:h-11 sm:w-11 rounded-full ring-1 transition-all duration-200 hover:scale-110" style={{ backgroundColor: 'color-mix(in srgb, var(--color-motif-medium) 8%, transparent)', color: "var(--color-motif-cream)" }} aria-label="Facebook">
                   <Facebook className="w-4 h-4 sm:w-5 sm:h-5" />
                 </a>
-                <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center h-10 w-10 sm:h-11 sm:w-11 rounded-full ring-1 transition-all duration-200 hover:scale-110" style={{ backgroundColor: 'color-mix(in srgb, var(--color-motif-medium) 8%, transparent)', color: palette.deep }} aria-label="Instagram">
+                <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center h-10 w-10 sm:h-11 sm:w-11 rounded-full ring-1 transition-all duration-200 hover:scale-110" style={{ backgroundColor: 'color-mix(in srgb, var(--color-motif-medium) 8%, transparent)', color: "var(--color-motif-cream)" }} aria-label="Instagram">
                   <Instagram className="w-4 h-4 sm:w-5 sm:h-5" />
                 </a>
-                  <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center text-center h-10 w-10 sm:h-11 sm:w-11 rounded-full ring-1 transition-all duration-200 hover:scale-110" style={{ backgroundColor: 'color-mix(in srgb, var(--color-motif-medium) 8%, transparent)', color: palette.deep }} aria-label="YouTube">
+                  <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center text-center h-10 w-10 sm:h-11 sm:w-11 rounded-full ring-1 transition-all duration-200 hover:scale-110" style={{ backgroundColor: 'color-mix(in srgb, var(--color-motif-medium) 8%, transparent)', color: "var(--color-motif-cream)" }} aria-label="YouTube">
                   <Music2 className="w-4 h-4 sm:w-5 sm:h-5" />
                 </a>
-                <a href="https://x.com/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center text-center h-10 w-10 sm:h-11 sm:w-11 rounded-full ring-1 transition-all duration-200 hover:scale-110" style={{ backgroundColor: 'color-mix(in srgb, var(--color-motif-medium) 8%, transparent)', color: palette.deep }} aria-label="Twitter">
+                <a href="https://x.com/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center text-center h-10 w-10 sm:h-11 sm:w-11 rounded-full ring-1 transition-all duration-200 hover:scale-110" style={{ backgroundColor: 'color-mix(in srgb, var(--color-motif-medium) 8%, transparent)', color: "var(--color-motif-cream)" }} aria-label="Twitter">
                   <Twitter className="w-4 h-4 sm:w-5 sm:h-5" />
                 </a>
               </div>
             </div>
 
             <div>
-              <h5 className={`${cinzel.className} font-semibold text-sm sm:text-base md:text-lg mb-2.5 sm:mb-3 md:mb-4`} style={{ color: palette.deep }}>Quick Links</h5>
+              <h5 className={`${cinzel.className} font-semibold text-sm sm:text-base md:text-lg mb-2.5 sm:mb-3 md:mb-4`} style={{ color: "var(--color-motif-cream)" }}>Quick Links</h5>
               <div className="space-y-1.5 sm:space-y-2">
                 {nav.map((item) => (
-                  <a key={item.href} href={item.href} className={`block transition-colors duration-200 ${cormorant.className} text-xs sm:text-sm leading-relaxed hover:opacity-80`} style={{ color: palette.deep }}>
+                  <a key={item.href} href={item.href} className={`block transition-colors duration-200 ${cormorant.className} text-xs sm:text-sm leading-relaxed hover:opacity-80`} style={{ color: "var(--color-motif-cream)" }}>
                     {item.label}
                   </a>
                 ))}
@@ -335,24 +335,24 @@ export function Footer() {
         <motion.div className="border-t pt-5 sm:pt-6 md:pt-7" style={{ borderColor: 'color-mix(in srgb, var(--color-motif-silver) 25%, transparent)' }} variants={fadeInUp}>
           <div className="flex flex-col md:flex-row items-center justify-between gap-3 sm:gap-4 md:gap-5">
             <div className="text-center md:text-left">
-                <p className={`${cormorant.className} text-xs sm:text-sm leading-relaxed`} style={{ color: palette.deep }}>
+                <p className={`${cormorant.className} text-xs sm:text-sm leading-relaxed`} style={{ color: "var(--color-motif-cream)" }}>
                 © {year} {groomNickname} & {brideNickname} — crafted with love, prayers, and gratitude.
               </p>
-              <p className={`${cormorant.className} text-xs sm:text-sm mt-1 leading-relaxed opacity-90`} style={{ color: palette.deep }}>
+              <p className={`${cormorant.className} text-xs sm:text-sm mt-1 leading-relaxed opacity-90`} style={{ color: "var(--color-motif-cream)" }}>
                 This celebration site was designed to share our story and joy with you.
               </p>
             </div>
             <div className="text-center md:text-right space-y-1">
-                  <p className={`${cormorant.className} text-xs sm:text-sm opacity-90`} style={{ color: palette.deep }}>
+                  <p className={`${cormorant.className} text-xs sm:text-sm opacity-90`} style={{ color: "var(--color-motif-cream)" }}>
                 Developed by{" "}
-                <a href="https://lance28-beep.github.io/portfolio-website/" target="_blank" rel="noopener noreferrer" className="underline transition-colors duration-200 hover:opacity-80" style={{ color: palette.deep }}>
+                <a href="https://lance28-beep.github.io/portfolio-website/" target="_blank" rel="noopener noreferrer" className="underline transition-colors duration-200 hover:opacity-80" style={{ color: "var(--color-motif-cream)" }}>
                   Lance Valle
                 </a>
               </p>
-              <p className={`${cormorant.className} text-xs sm:text-sm opacity-90`} style={{ color: palette.deep }}>
+                <p className={`${cormorant.className} text-xs sm:text-sm opacity-90`} style={{ color: "var(--color-motif-cream)" }}>
                 Want a website like this? Visit{" "}
-                <a href="https://www.facebook.com/WeddingInvitationNaga" target="_blank" rel="noopener noreferrer" className="underline transition-colors duration-200 hover:opacity-80" style={{ color: palette.deep }}>
-                  Wedding Invitation Naga
+                <a href="https://www.facebook.com/WeddingInvitationNaga" target="_blank" rel="noopener noreferrer" className="underline transition-colors duration-200 hover:opacity-80" style={{ color: "var(--color-motif-cream)" }}>
+                  Wedding Invitation Site
                 </a>
               </p>
             </div>

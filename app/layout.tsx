@@ -7,8 +7,8 @@ import { siteConfig } from "@/content/site"
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://rina-and-ryan.weddinginvitationrsvp.com/"
 const canonicalUrl = siteUrl.replace(/\/$/, "")
-const desktopHero = "/Details/LinkPreview.jpeg"
-const mobileHero = "/Details/LinkPreview.jpeg"
+const desktopHero = "/Details/imagePreview.png"
+const mobileHero = "/Details/imagePreview.png"
 const eventImageUrl = `${canonicalUrl}${desktopHero}`
 
 const coupleNames = `${siteConfig.couple.groomNickname} & ${siteConfig.couple.brideNickname}`

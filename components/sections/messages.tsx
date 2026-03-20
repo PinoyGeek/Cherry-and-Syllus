@@ -119,7 +119,7 @@ function MessageForm({ onSuccess, onMessageSent }: MessageFormProps) {
       <div className="absolute -top-3 -left-3 w-8 h-8 bg-motif-deep/20 rounded-full blur-sm animate-pulse-slow" />
       <div className="absolute -bottom-4 -right-4 w-12 h-12 bg-motif-deep/20 rounded-full blur-md animate-pulse-slow" />
       
-      <Card className={`relative w-full border-2 border-motif-deep/60 bg-motif-deep backdrop-blur-md transition-all duration-500 group overflow-hidden rounded-2xl ${
+      <Card className={`relative w-full border-2 border-motif-deep/60 bg-motif-cream backdrop-blur-md transition-all duration-500 group overflow-hidden rounded-2xl ${
         isFocused ? 'scale-[1.01] border-motif-deep' : 'hover:border-motif-deep/60'
       } ${isSubmitted ? 'animate-bounce' : ''}`}
         style={{ boxShadow: '0 16px 40px color-mix(in srgb, var(--color-motif-deep) 45%, transparent)' }}
@@ -148,10 +148,10 @@ function MessageForm({ onSuccess, onMessageSent }: MessageFormProps) {
                 <MessageCircle className="h-5 w-5 sm:h-6 sm:w-6 md:h-8 md:w-8 text-white" />
               </div>
             </div>
-            <h3 className={`scope-one-regular uppercase text-base sm:text-lg md:text-xl font-bold mb-1.5 sm:mb-2`} style={{ color: "var(--color-motif-cream)" }}>
+            <h3 className={`scope-one-regular uppercase text-base sm:text-lg md:text-xl font-bold mb-1.5 sm:mb-2`} style={{ color: "var(--color-motif-deep)" }}>
               Share Your Love
             </h3>
-            <p className={`${cormorant.className} text-[10px] sm:text-xs md:text-sm`} style={{ color: "var(--color-motif-cream)", opacity: 0.85 }}>
+            <p className={`${cormorant.className} text-[10px] sm:text-xs md:text-sm`} style={{ color: "var(--color-motif-deep)", opacity: 0.85 }}>
               Your words will be part of {coupleDisplayName}&apos;s keepsake for years to come.
             </p>
           </div>
@@ -165,9 +165,9 @@ function MessageForm({ onSuccess, onMessageSent }: MessageFormProps) {
           >
             {/* Name Field */}
             <div className="space-y-1.5 sm:space-y-2 md:space-y-3">
-              <label className={`${cormorant.className} block text-xs sm:text-sm md:text-base font-medium flex items-center gap-1.5 sm:gap-2`} style={{ color: "var(--color-motif-cream)" }}>
+              <label className={`${cormorant.className} block text-xs sm:text-sm md:text-base font-medium flex items-center gap-1.5 sm:gap-2`} style={{ color: "var(--color-motif-deep)" }}>
                 <div className={`w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 rounded-full flex items-center justify-center transition-all duration-300 ${focusedField === 'name' ? 'scale-110' : ''}`}                   style={{ backgroundColor: 'color-mix(in srgb, var(--color-motif-cream) 13%, transparent)' }}>
-                  <Heart className="h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-4 md:w-4" style={{ color: "var(--color-motif-cream)" }} />
+                  <Heart className="h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-4 md:w-4" style={{ color: "var(--color-motif-deep)" }} />
                 </div>
                 Your Name
               </label>
@@ -198,14 +198,14 @@ function MessageForm({ onSuccess, onMessageSent }: MessageFormProps) {
             {/* Message Field */}
             <div className="space-y-1.5 sm:space-y-2 md:space-y-3">
               <div className="flex items-center justify-between">
-                <label className={`${cormorant.className} block text-xs sm:text-sm md:text-base font-medium flex items-center gap-1.5 sm:gap-2`} style={{ color: "var(--color-motif-cream)" }}>
+                <label className={`${cormorant.className} block text-xs sm:text-sm md:text-base font-medium flex items-center gap-1.5 sm:gap-2`} style={{ color: "var(--color-motif-deep)" }}>
                   <div className={`w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 rounded-full flex items-center justify-center transition-all duration-300 ${focusedField === 'message' ? 'scale-110' : ''}`} style={{ backgroundColor: 'color-mix(in srgb, var(--color-motif-cream) 13%, transparent)' }}>
-                    <MessageCircle className="h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-4 md:w-4" style={{ color: "var(--color-motif-cream)" }} />
+                    <MessageCircle className="h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-4 md:w-4" style={{ color: "var(--color-motif-deep)" }} />
                   </div>
                   Your Message
                 </label>
                 {messageValue && (
-                  <span className={`${cormorant.className} text-[10px] sm:text-xs transition-colors ${messageValue.length > 500 ? 'text-red-500' : ''}`} style={messageValue.length <= 500 ? { color: "var(--color-motif-cream)", opacity: 0.6 } : undefined}>
+                  <span className={`${cormorant.className} text-[10px] sm:text-xs transition-colors ${messageValue.length > 500 ? 'text-red-500' : ''}`} style={messageValue.length <= 500 ? { color: "var(--color-motif-deep)", opacity: 0.6 } : undefined}>
                     {messageValue.length}/500
                   </span>
                 )}
@@ -327,12 +327,12 @@ export function Messages() {
       className="relative overflow-hidden"
     >
       {/* Corner floral decoration - white (same as welcome/countdown) */}
-      <div className="absolute left-0 top-0 z-0 pointer-events-none">
+      {/* <div className="absolute left-0 top-0 z-0 pointer-events-none">
         <Image src="/decoration/flower-decoration-left-bottom-corner2.png" alt="" width={300} height={300} className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] opacity-60 scale-y-[-1]" priority={false} style={{ filter: DECO_FILTER }} />
       </div>
       <div className="absolute right-0 top-0 z-0 pointer-events-none">
         <Image src="/decoration/flower-decoration-left-bottom-corner2.png" alt="" width={300} height={300} className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] opacity-60 scale-x-[-1] scale-y-[-1]" priority={false} style={{ filter: DECO_FILTER }} />
-      </div>
+      </div> */}
       <div className="absolute left-0 bottom-0 z-0 pointer-events-none">
         <Image src="/decoration/flower-decoration-left-bottom-corner2.png" alt="" width={300} height={300} className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] opacity-60" priority={false} style={{ filter: DECO_FILTER }} />
       </div>

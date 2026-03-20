@@ -306,7 +306,7 @@ export function Entourage() {
   }
 
   return (
-    <div className="relative w-full" style={{ backgroundColor: "var(--color-motif-accent)" }}>
+    <div className="relative w-full" style={{ backgroundColor: "var(--color-motif-medium)" }}>
       {/* Full-bleed layered background — champagne + beige with soft movement */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden>
         {/* Soft diagonal wash */}
@@ -409,7 +409,7 @@ export function Entourage() {
         }`}
       >
         <div
-          className="relative bg-motif-silver backdrop-blur-lg rounded-xl sm:rounded-2xl overflow-hidden border shadow-lg transition-all duration-500 group"
+          className="relative bg-motif-cream backdrop-blur-lg rounded-xl sm:rounded-2xl overflow-hidden border shadow-lg transition-all duration-500 group"
           style={{ borderColor: 'color-mix(in srgb, var(--color-motif-silver) 44%, transparent)', boxShadow: '0 18px 40px color-mix(in srgb, var(--color-motif-deep) 13%, transparent)' }}
         >
           {/* Card content */}

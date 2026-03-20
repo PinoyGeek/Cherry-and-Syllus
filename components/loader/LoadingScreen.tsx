@@ -181,7 +181,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
               }}
             />
             <Image
-              src="/monogram/monogram.png"
+              src="/monogram/newMonogram.png"
               alt="Monogram"
               width={240}
               height={240}
@@ -235,21 +235,23 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
         >
           <span
             className="scope-one-regular text-3xl sm:text-4xl md:text-5xl tracking-[0.2em] uppercase"
-            style={{ color: "var(--color-motif-silver)" }}
+            style={{ color: "#F6F4EF" }}
           >
-            {siteConfig.couple.groomNickname.trim()}
+            {siteConfig.couple.brideNickname.trim()}
           </span>
+          <br />
           <span
-            className="text-2xl sm:text-3xl md:text-4xl mx-3 font-[family-name:var(--font-imperial-script)]"
+            className="scope-one-regular text-2xl sm:text-3xl md:text-4xl mx-3 font-normal"
             style={{ color: "var(--color-motif-cream)" }}
           >
             &amp;
           </span>
+          <br />
           <span
             className="scope-one-regular text-3xl sm:text-4xl md:text-5xl tracking-[0.2em] uppercase"
-            style={{ color: "var(--color-motif-silver)" }}
+            style={{ color: "#F6F4EF" }}
           >
-            {siteConfig.couple.brideNickname.trim()}
+            {siteConfig.couple.groomNickname.trim()}
           </span>
         </h1>
 
@@ -258,7 +260,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
           className={`font-[family-name:var(--font-imperial-script)] text-sm sm:text-base mt-6 sm:mt-8 transition-all duration-600 ease-out ${
             supportVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
-          style={{ color: "var(--color-motif-cream)" }}
+          style={{ color: "var(--color-motif-cream)", fontFamily: '"Rouge Script", cursive' }}
         >
           Together with their families
         </p>
@@ -268,7 +270,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
           className={`scope-one-regular text-[10px] sm:text-[11px] tracking-[0.35em] uppercase mt-2 mb-10 sm:mb-12 transition-all duration-600 ease-out ${
             dateVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
-          style={{ color: "color-mix(in srgb, var(--color-motif-cream) 55%, transparent)" }}
+          style={{ color: "#F6F4EF" }}
         >
           {siteConfig.ceremony.day}&nbsp;·&nbsp;{siteConfig.wedding.date}
         </p>
@@ -281,7 +283,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
         >
           <p
             className="font-[family-name:var(--font-imperial-script)] text-base sm:text-lg mb-4 sm:mb-5"
-            style={{ color: "var(--color-motif-cream)" }}
+            style={{ color: "var(--color-motif-cream)", fontFamily: '"Rouge Script", cursive' }}
           >
             Preparing your invitation
           </p>

@@ -35,15 +35,15 @@ export function Details() {
   const [rotationOffset, setRotationOffset] = useState(0)
   
   const coupleImages = [
-    "/mobile-background/couple (5).jpg",
-    "/mobile-background/couple (4).jpg",
-    "/mobile-background/couple (9).jpg",
-    "/mobile-background/couple (8).jpg",
+    // "/mobile-background/couple (5).jpg",
+    // "/mobile-background/couple (4).jpg",
+    // "/mobile-background/couple (9).jpg",
+    // "/mobile-background/couple (8).jpg",
   ]
 
   const receptionImages = [
-    "/Details/La Vida Resort and Events Center.png",
-    "/Details/La Vida Resort and Events Center 2.png"
+    "/Details/reception.png",
+    "/Details/reception2.png"
   ]
 
   useEffect(() => {
@@ -359,7 +359,7 @@ export function Details() {
                   }`}
                 >
                   <Image
-                    src="/Details/venue.png"
+                    src={src}
                     alt={siteConfig.reception.venue}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -574,7 +574,7 @@ export function Details() {
 
      {/* Gentle Reminders Container */}
      <div className="relative z-10 max-w-4xl mx-auto px-3 sm:px-5 mt-8 sm:mt-12 md:mt-16">
-       <div className="relative overflow-hidden rounded-xl sm:rounded-2xl border border-motif-cream/35 bg-motif-deep backdrop-blur-lg shadow-[0_18px_40px_color-mix(in_srgb,var(--color-motif-deep)_55%,transparent)]">
+       <div className="relative overflow-hidden rounded-xl sm:rounded-2xl border border-motif-cream/35 bg-motif-medium backdrop-blur-lg shadow-[0_18px_40px_color-mix(in_srgb,var(--color-motif-deep)_55%,transparent)]">
           {/* Content */}
           <div className="relative z-10 px-4 sm:px-6 md:px-8 py-6 sm:py-8 md:py-10">
             {/* Animated couple photos carousel */}
@@ -613,18 +613,18 @@ export function Details() {
             </div> */}
 
             {/* Title */}
-            <h3 className="scope-one-regular text-2xl sm:text-3xl md:text-4xl text-center text-motif-cream mb-6 sm:mb-8 tracking-[0.26em] uppercase">
-              GENTLE REMINDERS
+            <h3 className="scope-one-regular text-xl sm:text-2xl md:text-3xl text-motif-cream mb-3 sm:mb-4 uppercase tracking-[0.2em] text-center" style={{ textShadow: "0 2px 10px color-mix(in srgb, var(--color-motif-cream) 20%, transparent)" }}>
+              GENTLE REMINDERS 
             </h3>
 
             {/* Reminders List */}
             <div className="space-y-4 sm:space-y-5 md:space-y-6 max-w-2xl mx-auto">
               {/* Children Reminder */}
-              <div className="bg-motif-silver/60 rounded-lg p-4 sm:p-5 md:p-6 border border-motif-deep/10 shadow-sm">
-                <h4 className="scope-one-regular text-base sm:text-lg md:text-xl text-motif-cream mb-2 sm:mb-3 tracking-[0.18em] uppercase">
+              <div className="bg-motif-cream rounded-lg p-4 sm:p-5 md:p-6 border border-motif-deep/10 shadow-sm">
+                <h4 className="scope-one-regular text-base sm:text-lg md:text-xl text-motif-deep mb-2 sm:mb-3 tracking-[0.18em] uppercase">
                   CHILDREN
                 </h4>
-                <p className={`${cormorant.className} text-sm sm:text-base md:text-lg text-motif-cream/85 leading-relaxed`}>
+                <p className={`font-body text-xs sm:text-sm md:text-base text-motif-deep/80 leading-relaxed`}>
                   While we love your little ones, we kindly request an adults-only celebration so everyone can relax and enjoy the evening.
                 </p>
               </div>
@@ -640,21 +640,21 @@ export function Details() {
               </div> */}
 
               {/* Arrival Reminder */}
-              <div className="bg-motif-silver/60 rounded-lg p-4 sm:p-5 md:p-6 border border-motif-deep/10 shadow-sm">
-                <h4 className="scope-one-regular text-base sm:text-lg md:text-xl text-motif-cream mb-2 sm:mb-3 tracking-[0.18em] uppercase">
+              <div className="bg-motif-cream rounded-lg p-4 sm:p-5 md:p-6 border border-motif-deep/10 shadow-sm">
+                <h4 className="scope-one-regular text-base sm:text-lg md:text-xl text-motif-deep mb-2 sm:mb-3 tracking-[0.18em] uppercase">
                   ARRIVAL
                 </h4>
-                <p className={`${cormorant.className} text-sm sm:text-base md:text-lg text-motif-cream/85 leading-relaxed`}>
+                <p className={`font-body text-xs sm:text-sm md:text-base text-motif-deep/80 leading-relaxed`}>
                   To ensure everything runs smoothly, please arrive at least 30 minutes before the ceremony starts. This will give you time to find your seat, take in the beautiful setup, and be fully present for our special moment.
                 </p>
               </div>
 
               {/* Gifts Reminder */}
-              <div className="bg-motif-silver/60 rounded-lg p-4 sm:p-5 md:p-6 border border-motif-deep/10 shadow-sm">
-                <h4 className="scope-one-regular text-base sm:text-lg md:text-xl text-motif-cream mb-2 sm:mb-3 tracking-[0.18em] uppercase">
+              <div className="bg-motif-cream rounded-lg p-4 sm:p-5 md:p-6 border border-motif-deep/10 shadow-sm">
+                <h4 className="scope-one-regular text-base sm:text-lg md:text-xl text-motif-deep mb-2 sm:mb-3 tracking-[0.18em] uppercase">
                   GIFTS
                 </h4>
-                <p className={`${cormorant.className} text-sm sm:text-base md:text-lg text-motif-cream/85 leading-relaxed`}>
+                <p className={`font-body text-xs sm:text-sm md:text-base text-motif-deep/80 leading-relaxed`}>
                 We are grateful to God for your love and prayers on our special day.
                 For those who wish to give a gift, a monetary gift to help us begin our life together would be deeply appreciated.                </p>
               </div>

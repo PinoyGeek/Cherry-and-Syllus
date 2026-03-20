@@ -179,7 +179,7 @@ export function Countdown() {
           style={{ filter: "brightness(0) invert(1)" }}
         />
       </div> */}
-      <div className="absolute left-0 bottom-0 z-0 pointer-events-none">
+      {/* <div className="absolute left-0 bottom-0 z-0 pointer-events-none">
         <Image
           src="/decoration/flower-decoration-left-bottom-corner2.png"
           alt=""
@@ -189,8 +189,8 @@ export function Countdown() {
           priority={false}
           style={{ filter: "brightness(0) invert(1)" }}
         />
-      </div>
-      <div className="absolute right-0 bottom-0 z-0 pointer-events-none">
+      </div> */}
+      {/* <div className="absolute right-0 bottom-0 z-0 pointer-events-none">
         <Image
           src="/decoration/flower-decoration-left-bottom-corner2.png"
           alt=""
@@ -200,7 +200,7 @@ export function Countdown() {
           priority={false}
           style={{ filter: "brightness(0) invert(1)" }}
         />
-      </div>
+      </div> */}
       
       {/* Monogram - centered at top */}
       <div className="relative flex justify-center pt-8 sm:pt-10 md:pt-12 mb-6 sm:mb-8 md:mb-10 z-10">
@@ -212,7 +212,7 @@ export function Countdown() {
         >
           <div className="relative w-72 h-72 sm:w-96 sm:h-96 md:w-[28rem] md:h-[28rem] lg:w-[36rem] lg:h-[36rem] xl:w-[40rem] xl:h-[40rem] opacity-90">
             <Image
-              src="/monogram/monogram.png"
+              src="/monogram/newMonogram.png"
               alt={`${groomNickname} & ${brideNickname} Monogram`}
               fill
               className="object-contain"
