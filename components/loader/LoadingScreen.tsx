@@ -267,12 +267,25 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
 
         {/* Wedding date */}
         <p
-          className={`scope-one-regular text-[10px] sm:text-[11px] tracking-[0.35em] uppercase mt-2 mb-10 sm:mb-12 transition-all duration-600 ease-out ${
+          className={`scope-one-regular text-[10px] sm:text-[11px] md:text-[12px] tracking-[0.35em] uppercase mt-2 mb-10 sm:mb-12 leading-none transition-all duration-600 ease-out ${
             dateVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
-          style={{ color: "#F6F4EF" }}
+          style={{
+            color: "#F6F4EF",
+            // Subtle glow so the line feels integrated with the loader’s lighting.
+            textShadow: "0 0 14px rgba(238, 209, 213, 0.16)",
+          }}
+          aria-label={`${siteConfig.ceremony.day}, ${siteConfig.wedding.date} · ${siteConfig.ceremony.time}`}
         >
-          {siteConfig.ceremony.day}&nbsp;·&nbsp;{siteConfig.wedding.date}
+          <span>{siteConfig.ceremony.day}</span>
+          <span className="mx-2 opacity-70" aria-hidden>
+            ·
+          </span>
+          <span className="tabular-nums">{siteConfig.wedding.date}</span>
+          <span className="mx-2 opacity-70" aria-hidden>
+            ·
+          </span>
+          <span className="tabular-nums">{siteConfig.ceremony.time}</span>
         </p>
 
         {/* Progress section */}

@@ -22,7 +22,7 @@ export const siteConfig = {
   },
   ceremony: {
     location: "Sto. Niño Mission Chapel",
-    venue: "Delgado, Valeria St, Iloilo City Proper, Iloilo City",
+    venue: "Valeria Street, Iloilo City",
     date: "May 27, 2026",
     day: "Wednesday",
     time: "3:00 PM",
@@ -31,7 +31,7 @@ export const siteConfig = {
   },
   reception: {
     location: "Hotel Del Rio",
-    venue: "M. H. Del Pilar Street, Iloilo City, Philippines, 5000",
+    venue: "Molo Del Pilar Street, Iloilo City, Philippines, 5000",
     date: "May 27, 2026",
     time: "6:00 PM",
   },
@@ -84,7 +84,7 @@ Now, as they prepare to say yes before God and the people they love most, Cather
   },
   snapShare: {
     googleDriveLink: "https://drive.google.com/drive/folders/1pDR7-hRRJKwqSQ0kntbKlxX6ZkWt9hka?usp=sharing",
-    hashtag: ["#SYLLUSserbaKayCHERRY", "#SYLLUSandCHERRY"],
+    hashtag: ["#cheandsy"],
     instructions: "Please scan this QR Code, create a folder with your name and upload the photos and videos you have taken during our wedding reception. We are delighted to see your snaps too!",
   },
 }

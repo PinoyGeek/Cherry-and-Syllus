@@ -239,12 +239,14 @@ export function SnapShare() {
             Capture & Share the Celebration
           </h2>
           <p
-            className={`${cormorant.className} text-xs sm:text-sm md:text-base text-motif-cream max-w-2xl mx-auto mt-2 sm:mt-4 leading-relaxed px-2`}
-          >
-            Because you have touched our lives with your friendship and love, we, {groomNickname} and {brideNickname}, joyfully invite you to share in the beginning of our new life together as we exchange our wedding vows on {siteConfig.ceremony.day}, {siteConfig.wedding.date}, at {siteConfig.wedding.time}, at {siteConfig.ceremony.location}.
-            <br />
-your presence will make this moment even more meaningful as we celebrate love, commitment, and the start of our forever.
-          </p>
+  className={`${cormorant.className} text-xs sm:text-sm md:text-base text-motif-cream max-w-2xl mx-auto mt-2 sm:mt-4 leading-relaxed px-2`}
+>
+  Because you have been part of our journey through our friendship and love, We, <b>{groomNickname} & {brideNickname}</b>, Joyfully invite you to witness one of the most meaningful moments of our lives.
+  <br />
+  Join us as we exchange our wedding vows on <b>{siteConfig.ceremony.day}, {siteConfig.wedding.date}, at {siteConfig.ceremony.location}</b>, as we promise our hearts to one another and begin our forever.
+  <br />
+  Your presence will mean so much to us as we celebrate <b>Love, Commitment, and a Lifetime of Togetherness</b>.
+</p>
           <div className="mx-auto mt-3 sm:mt-5 h-px w-20 sm:w-24" style={{ backgroundColor: "var(--color-motif-accent)" }} />
         </motion.div>
 

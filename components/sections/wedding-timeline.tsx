@@ -139,7 +139,7 @@ export function WeddingTimeline() {
           style={{ transform: "scaleX(-1) scaleY(-1)", filter: DECO_FILTER_WHITE }}
           priority={false}
         />
-        <Image
+        {/* <Image
           src="/decoration/flower-decoration-left-bottom-corner2.png"
           alt=""
           width={300}
@@ -147,8 +147,8 @@ export function WeddingTimeline() {
           className="absolute bottom-0 left-0 w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] opacity-25"
           style={{ filter: DECO_FILTER_WHITE }}
           priority={false}
-        />
-        <Image
+        /> */}
+        {/* <Image
           src="/decoration/flower-decoration-left-bottom-corner2.png"
           alt=""
           width={300}
@@ -156,7 +156,7 @@ export function WeddingTimeline() {
           className="absolute bottom-0 right-0 w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] opacity-25"
           style={{ transform: "scaleX(-1)", filter: DECO_FILTER_WHITE }}
           priority={false}
-        />
+        /> */}
       </div>
 
       {/* Header - white text */}
