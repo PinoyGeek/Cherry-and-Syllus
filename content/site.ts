@@ -36,16 +36,18 @@ export const siteConfig = {
     time: "6:00 PM",
   },
   dressCode: {
-    theme: "Semi-Formal",
+    theme: "Formal",
     // Comma-separated so components can render swatches (see Details section).
     colors: "#48553C, #727B42, #7D2734,#CE979D",
     sponsors: {
-      male: "Guests are kindly requested to wear attire in any of the shades within our wedding palette.Color pallet and image to be followed. STRICTLY no shorts, maong jeans, t-shirts, or slippers.",
-      female: "Guests are kindly requested to wear attire in any of the shades within our wedding palette.Color pallet and image to be followed. STRICTLY no shorts, maong jeans, t-shirts, or slippers."
+      image: "/Details/principal sponsors.png",
+      note: "Suit in Black and Long Gown in shades of champagne." ,
+      palette: "#010200, #CCAE78", 
     },
     guests: {
-      gents: "Guests are kindly requested to wear attire in any of the shades within our wedding palette.Color pallet and image to be followed. STRICTLY no shorts, maong jeans, t-shirts, or slippers.",
-      ladies: "Guests are kindly requested to wear attire in any of the shades within our wedding palette.Color pallet and image to be followed. STRICTLY no shorts, maong jeans, t-shirts, or slippers."
+      image: "/Details/guestAttires.png",
+      notes: "Formal Attire in the following shades.",
+      palette: "#792C2A, #DFB2AD, #819234, #CCAE78", 
     },
     note: "We kindly request our guests to dress in attire following our wedding palette."
   },
@@ -81,7 +83,7 @@ Now, as they prepare to say yes before God and the people they love most, Cather
     silver: "#ffffff",
   },
   snapShare: {
-    googleDriveLink: "https://drive.google.com/drive/folders/1OHc4gq4VHPequrPTjIrV6-YpZ5ctk9lo?usp=sharing",
+    googleDriveLink: "https://drive.google.com/drive/folders/1pDR7-hRRJKwqSQ0kntbKlxX6ZkWt9hka?usp=sharing",
     hashtag: ["#SYLLUSserbaKayCHERRY", "#SYLLUSandCHERRY"],
     instructions: "Please scan this QR Code, create a folder with your name and upload the photos and videos you have taken during our wedding reception. We are delighted to see your snaps too!",
   },

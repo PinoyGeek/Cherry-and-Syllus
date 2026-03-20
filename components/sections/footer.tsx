@@ -174,7 +174,7 @@ export function Footer() {
             {ceremonyDate}
           </p>
           <p className={`${cormorant.className} text-xs sm:text-sm md:text-base mt-1 sm:mt-2`} style={{ color: "var(--color-motif-cream)" }}>
-            {combinedVenue ?? ceremonyVenue}
+            {toTitleCase(siteConfig.ceremony.location)}
           </p>
         </div>
       </div>
@@ -197,7 +197,7 @@ export function Footer() {
                 </div>
                 <div className={`flex items-center gap-2 sm:gap-2.5 md:gap-3 ${cormorant.className}`} style={{ color: "var(--color-motif-cream)" }}>
                   <MapPin className="w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 flex-shrink-0" style={{ color: "var(--color-motif-cream)" }} />
-                  <span className="text-xs sm:text-sm md:text-base leading-relaxed text-motif-cream">{toTitleCase(ceremonyVenue)}</span>
+                  <span className="text-xs sm:text-sm md:text-base leading-relaxed text-motif-cream">{toTitleCase(siteConfig.ceremony.location)}</span>
                 </div>
               </div>
             </div>
@@ -228,11 +228,11 @@ export function Footer() {
                 <div className={`space-y-2 sm:space-y-2.5 md:space-y-3 ${cormorant.className} text-xs sm:text-sm leading-relaxed`} style={{ color: palette.softBrown }}>
                   <div className="flex items-start gap-2 sm:gap-2.5 md:gap-3">
                     <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0 mt-0.5" style={{ color: palette.deep }} />
-                    <span className="text-motif-deep">{toTitleCase(combinedVenue ?? ceremonyVenue)}</span>
+                    <span className="text-motif-deep">{toTitleCase(siteConfig.ceremony.location)}</span>
                   </div>
                   <div className="flex items-center gap-2 sm:gap-2.5 md:gap-3">
                     <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0" style={{ color: palette.deep }} />
-                    <span className="text-motif-deep">Ceremony {ceremonyTime} · Reception {receptionTime}</span>
+                    <span className="text-motif-deep">Ceremony {siteConfig.ceremony.time} · Reception {siteConfig.reception.time}</span>
                   </div>
                 </div>
               </motion.div>
@@ -248,7 +248,7 @@ export function Footer() {
                   <div className={`space-y-2 sm:space-y-2.5 md:space-y-3 ${cormorant.className} text-xs sm:text-sm leading-relaxed`} style={{ color: palette.softBrown }}>
                     <div className="flex items-start gap-2 sm:gap-2.5 md:gap-3">
                       <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0 mt-0.5 text-motif-deep" style={{ color: palette.deep }} />
-                      <span className="text-motif-deep">{toTitleCase(ceremonyVenue)}</span>
+                      <span className="text-motif-deep">{toTitleCase(siteConfig.ceremony.location)}</span>
                     </div>
                     <div className="flex items-center gap-2 sm:gap-2.5 md:gap-3">
                       <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0" style={{ color: palette.deep }} />
@@ -266,7 +266,7 @@ export function Footer() {
                   <div className={`space-y-2 sm:space-y-2.5 md:space-y-3 ${cormorant.className} text-xs sm:text-sm leading-relaxed`} style={{ color: palette.deep }}>
                     <div className="flex items-start gap-2 sm:gap-2.5 md:gap-3">
                       <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0 mt-0.5" style={{ color: palette.deep }} />
-                      <span>{toTitleCase(receptionVenue)}</span>
+                      <span>{toTitleCase(siteConfig.reception.location)}</span>
                     </div>
                     <div className="flex items-center gap-2 sm:gap-2.5 md:gap-3">
                       <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0" style={{ color: palette.deep }} />
