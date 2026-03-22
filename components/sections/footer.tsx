@@ -156,7 +156,7 @@ export function Footer() {
           <div className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 opacity-95">
             <Image
               src="/monogram/newMonogram.png"
-              alt={`${groomNickname} & ${brideNickname} monogram`}
+              alt={`${brideNickname} & ${groomNickname} monogram`}
               fill
               className="object-contain"
               priority={false}
@@ -188,7 +188,7 @@ export function Footer() {
                 <div className="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-full flex items-center justify-center border flex-shrink-0 shadow-md" style={{ backgroundColor: 'color-mix(in srgb, var(--color-motif-deep) 9%, transparent)', borderColor: 'color-mix(in srgb, var(--color-motif-deep) 25%, transparent)' }}>
                   <Heart className="w-5 h-5 sm:w-6 sm:h-6 md:w-6 md:h-6 flex-shrink-0" style={{ color: "var(--color-motif-cream)" }} fill="var(--color-motif-deep)" />
                 </div>
-                <h3 className={`${cinzel.className} text-xl sm:text-2xl md:text-3xl lg:text-4xl font-normal`} style={{ color: "var(--color-motif-cream)" }}>{groomNickname} & {brideNickname}</h3>
+                <h3 className={`${cinzel.className} text-xl sm:text-2xl md:text-3xl lg:text-4xl font-normal`} style={{ color: "var(--color-motif-cream)" }}>{brideNickname} & {groomNickname}</h3>
               </div>
               <div className="space-y-2.5 sm:space-y-3 md:space-y-4">
                 <div className={`flex items-center gap-2 sm:gap-2.5 md:gap-3 ${cormorant.className}`} style={{ color: "var(--color-motif-cream)" }}>
@@ -336,7 +336,7 @@ export function Footer() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-3 sm:gap-4 md:gap-5">
             <div className="text-center md:text-left">
                 <p className={`${cormorant.className} text-xs sm:text-sm leading-relaxed`} style={{ color: "var(--color-motif-cream)" }}>
-                © {year} {groomNickname} & {brideNickname} — crafted with love, prayers, and gratitude.
+                © {year} {brideNickname} & {groomNickname} — crafted with love, prayers, and gratitude.
               </p>
               <p className={`${cormorant.className} text-xs sm:text-sm mt-1 leading-relaxed opacity-90`} style={{ color: "var(--color-motif-cream)" }}>
                 This celebration site was designed to share our story and joy with you.

@@ -384,7 +384,7 @@ export function Entourage() {
           className={`scope-one-regular text-[0.7rem] sm:text-xs md:text-sm uppercase tracking-[0.28em] mb-2`}
           style={{ color: "var(--color-motif-cream)" }}
         >
-          Those who stand with {siteConfig.couple.groomNickname} &amp; {siteConfig.couple.brideNickname}
+          Those who stand with {siteConfig.couple.brideNickname} &amp; {siteConfig.couple.groomNickname}
         </p>
 
         <h2

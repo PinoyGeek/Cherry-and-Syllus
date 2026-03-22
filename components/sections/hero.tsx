@@ -65,7 +65,7 @@ export function Hero() {
               className="scope-one-regular text-[11px] sm:text-xs tracking-[0.35em] uppercase"
               style={{ color: "color-mix(in srgb, var(--color-motif-cream) 70%, transparent)" }}
             >
-              to
+             and
             </p>
 
             <p
