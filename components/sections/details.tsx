@@ -231,10 +231,10 @@ export function Details() {
                 {/* <p className="text-sm sm:text-base md:text-lg font-[family-name:var(--font-ephesis)] text-[#FFF7F6] mb-1 sm:mb-2 drop-shadow-lg">
                   Ceremony
                 </p> */}
-                <h3 className="scope-one-regular text-lg sm:text-xl md:text-2xl lg:text-3xl font-normal text-white mb-0.5 sm:mb-1 drop-shadow-lg uppercase tracking-[0.18em] leading-tight">
+                <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-[family-name:var(--font-crimson)] font-normal text-motif-cream mb-0.5 sm:mb-1 drop-shadow-lg uppercase tracking-[0.1em] leading-tight">
                   {siteConfig.ceremony.location}
                 </h3>
-                <p className="font-body text-xs sm:text-sm md:text-base text-white/90 drop-shadow-md tracking-[0.12em] uppercase">
+                <p className=" text-xs sm:text-sm md:text-base text-white/90 drop-shadow-md tracking-[0.12em] uppercase">
                   {siteConfig.ceremony.venue}
                 </p>
               </div>

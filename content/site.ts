@@ -1,9 +1,9 @@
 export const siteConfig = {
   couple: {
-    bride: "Cherry Lou Jayme",
-    brideNickname: "Cherry ",
-    groom: "Syllus Paul Estrologo",
-    groomNickname: "Syllus",
+    bride: "Syllus Paul Estrologo", //Syllus Paul Estrologo
+    brideNickname: "Syllus", //Syllus
+    groom: "Cherry Lou Jayme", //Cherry Lou Jayme
+    groomNickname: "Cherry",
   },
   wedding: {
     date: "May 27, 2026",
@@ -17,7 +17,7 @@ export const siteConfig = {
     rsvp: {
       deadline: " April 11, 2026",
       contact: "Cherry Lou Jayme",
-      phone: "0917-5431-306",
+      phone: "09479393627",
     },
   },
   ceremony: {

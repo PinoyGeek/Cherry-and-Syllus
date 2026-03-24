@@ -40,7 +40,7 @@ export function Registry() {
         </h2>
         
         <p className="text-xs sm:text-sm md:text-base lg:text-lg text-motif-cream/90 font-light max-w-2xl mx-auto leading-relaxed px-2">
-        With grateful hearts, We feel truly blessed with all that we have. Your presence and prayers are the greatest gifts we could ask for. However, if you wish to give something more, a monetary gift would be sincerely appreciated.
+        With grateful hearts, we feel truly blessed with all that we have. Your presence and prayers are the greatest gifts we could ask for. However, if you wish to give something more, a monetary gift would be sincerely appreciated.
         </p>
         
         <div className="flex items-center justify-center gap-2 mt-3 sm:mt-4">
