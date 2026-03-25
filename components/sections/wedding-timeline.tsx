@@ -74,7 +74,7 @@ const timelineEvents: TimelineEvent[] = [
   {
     time: "3:00 PM",
     title: "Wedding Ceremony",
-    description: `Join us as ${groomNickname} & ${brideNickname} exchange vows and begin their life together.`,
+    description: `Join us as ${brideNickname} & ${groomNickname} exchange vows and begin their life together.`,
     location: ceremonyVenue,
     icon: RingsIcon,
     imageSrc: "/weddingtimeline/WeddingCeremony.png",
@@ -90,7 +90,7 @@ const timelineEvents: TimelineEvent[] = [
   {
     time: "6:00 PM",
     title: "Program Starts",
-    description: `Celebrate the grand entrance of ${groomNickname} & ${brideNickname} and the start of the evening festivities.`,
+    description: `Celebrate the grand entrance of ${brideNickname} & ${groomNickname} and the start of the evening festivities.`,
     location: receptionVenue,
     icon: FireworksIcon,
     imageSrc: "/weddingtimeline/reception welcom.png",

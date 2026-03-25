@@ -245,24 +245,24 @@ export function Details() {
               {/* Date Section */}
               <div className="text-center mb-5 sm:mb-8 md:mb-10">
                 {/* Day name */}
-                <p className="scope-one-regular text-[10px] sm:text-xs md:text-sm text-motif-deep uppercase tracking-[0.32em] mb-2 sm:mb-3">
+                <p className="inter-regular text-[10px] sm:text-xs md:text-sm text-motif-deep uppercase tracking-[0.32em] mb-2 sm:mb-3">
                   {siteConfig.ceremony.day}
                 </p>
                 
                 {/* Month - Script style with warm gold */}
                 <div className="mb-2 sm:mb-4">
-                  <p className="scope-one-regular text-xl sm:text-2xl md:text-3xl lg:text-4xl text-motif-deep leading-none tracking-[0.18em] uppercase">
+                  <p className="inter-regular text-xl sm:text-2xl md:text-3xl lg:text-4xl text-motif-deep leading-none tracking-[0.18em] uppercase">
                   {new Date(siteConfig.ceremony.date).toLocaleString('default', { month: 'long' })}
                   </p>
                 </div>
                 
                 {/* Day and Year */}
                 <div className="flex items-center justify-center gap-2 sm:gap-3 md:gap-4 mb-4 sm:mb-6 md:mb-7">
-                  <p className="scope-one-regular text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal text-motif-deep leading-none tracking-[0.18em]">
+                  <p className="inter-regular text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal text-motif-deep leading-none tracking-[0.18em]">
                   {new Date(siteConfig.ceremony.date).getDate()}
                   </p>
                   <div className="h-10 sm:h-12 md:h-16 lg:h-20 w-[2px] bg-gradient-to-b from-motif-medium via-motif-deep to-motif-medium" />
-                  <p className="scope-one-regular text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-motif-deep leading-none tracking-[0.24em] uppercase">
+                  <p className="inter-regular text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-motif-deep leading-none tracking-[0.24em] uppercase">
                   {new Date(siteConfig.ceremony.date).getFullYear()}
                   </p>
                 </div>
@@ -275,7 +275,7 @@ export function Details() {
                 </div>
 
                 {/* Time */}
-                <p className="scope-one-regular text-sm sm:text-base md:text-lg lg:text-xl text-motif-deep tracking-[0.22em] uppercase">
+                <p className="inter-regular text-sm sm:text-base md:text-lg lg:text-xl text-motif-deep tracking-[0.22em] uppercase">
                   {siteConfig.ceremony.time}
                 </p>
               </div>

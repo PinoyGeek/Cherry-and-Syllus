@@ -241,7 +241,7 @@ export function SnapShare() {
           <p
   className={`${cormorant.className} text-xs sm:text-sm md:text-base text-motif-cream max-w-2xl mx-auto mt-2 sm:mt-4 leading-relaxed px-2`}
 >
-  Because you have been part of our journey through our friendship and love, We, <b>{brideNickname} & {groomNickname}</b>, joyfully invite you to witness one of the most meaningful moments of our lives.
+  Because you have been part of our journey through our friendship and love, we, <b>{brideNickname} & {groomNickname}</b>, joyfully invite you to witness one of the most meaningful moments of our lives.
   <br />
   Join us as we exchange our wedding vows on <b>{siteConfig.ceremony.day}, {siteConfig.wedding.date}, at {siteConfig.ceremony.location}</b> at {siteConfig.ceremony.time}, as we promise our hearts to one another and begin our forever.
   <br />

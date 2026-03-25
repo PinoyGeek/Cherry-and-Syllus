@@ -81,7 +81,7 @@ export function Hero() {
             className="mt-10 scope-one-regular text-[11px] sm:text-xs tracking-[0.35em] uppercase"
             style={{ color: "color-mix(in srgb, var(--color-motif-cream) 80%, transparent)" }}
           >
-            on {siteConfig.ceremony.day} {siteConfig.wedding.date.toUpperCase()}
+            on {siteConfig.ceremony.day}, {siteConfig.wedding.date.toUpperCase()}
           </p>
 
           {/* Ceremony details — formal serif */}
