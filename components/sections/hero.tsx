@@ -126,7 +126,7 @@ export function Hero() {
           {/* Primary RSVP button */}
           <div className="mt-10 flex justify-center">
             <a
-              href="#rsvp"
+              href="#guest-list"
               className="inline-flex items-center justify-center px-10 py-3 rounded-sm scope-one-regular text-[11px] sm:text-xs tracking-[0.35em] uppercase transition-colors"
               style={{
                 backgroundColor: "var(--color-motif-accent)",
